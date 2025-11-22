@@ -1,0 +1,72 @@
+[package]
+name = "mellilex"
+version = "0.1.0"
+description = "MelliLex - AI-powered word exploration"
+authors = ["you"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace]
+members = ["crates/mellilex_capture"]
+resolver = "2"
+
+[lib]
+# The `_lib` suffix may seem redundant but it is necessary
+# to make the lib name unique and wouldn't conflict with the bin name.
+# This seems to be only an issue on Windows, see https://github.com/rust-lang/cargo/issues/8519
+name = "mellilex_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.5.1", features = [] }
+
+[dependencies]
+tauri = { version = "2.9.2", features = [ "tray-icon" ]  }
+tauri-plugin-opener = "2.5.2"
+tauri-plugin-log = "2.7.1"
+tauri-plugin-global-shortcut = "2.2.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+rusqlite = { version = "0.31", features = ["bundled"] }
+reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+zip = { version = "2.2", default-features = false, features = ["deflate"] }
+anyhow = "1"
+async-trait = "0.1"
+thiserror = "1.0"
+log = "0.4"
+env_logger = "0.11"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tracing-appender = "0.2"
+symspell = "0.4.5"
+rust-stemmers = "1.2.0"
+mellilex_capture = { path = "crates/mellilex_capture" }
+once_cell = "1.19"
+tauri-plugin-updater = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-process = "2"
+window-vibrancy = "0.7.1"
+tauri-plugin-window-state = "2.4.1"
+ring = "0.17.8"
+zeroize = "1.7"
+backoff = { version = "0.4", features = ["tokio"] }
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.58", features = [
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_Foundation",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_System_Threading",
+    "ApplicationModel"  # For Store build detection
+] }
+uiautomation = "0.3"
+
+[dev-dependencies]
+tempfile = "3"
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-global-shortcut = "2"

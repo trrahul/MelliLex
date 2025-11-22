@@ -1,0 +1,33 @@
+[package]
+name = "mellilex_capture"
+version = "0.1.0"
+edition = "2021"
+description = "MelliLex capture engine for extracting text under the cursor"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+async-trait = "0.1"
+anyhow = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+tracing = "0.1"
+tokio = { version = "1", features = ["rt", "time"] }
+widestring = "1"
+log = "0.4"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt"] }
+
+[target.'cfg(windows)'.dependencies]
+uiautomation = { version = "0.3" }
+windows = { version = "0.58", features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Gdi",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_System_DataExchange",
+    "Win32_System_Memory",
+    "Win32_System_Ole",
+    "Win32_System_Com",
+] }

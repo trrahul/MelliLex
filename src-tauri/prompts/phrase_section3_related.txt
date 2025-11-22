@@ -1,0 +1,69 @@
+You are an expert lexicographer. Provide related phrases and variations for: "{{phrase}}"
+
+Return valid JSON matching this schema:
+
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["variations", "similarPhrases", "oppositePhrases", "seeAlso"],
+  "properties": {
+    "variations": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["phrase"],
+        "properties": {
+          "phrase": {"type": "string", "description": "A variation of the original phrase"},
+          "region": {"type": "string", "enum": ["universal", "american", "british", "australian"]},
+          "note": {"type": "string", "description": "What's different about this variation (e.g., 'more formal', 'older form', 'abbreviated')"}
+        }
+      },
+      "description": "Regional or stylistic variations of the same phrase"
+    },
+    "similarPhrases": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["phrase", "meaningHint"],
+        "properties": {
+          "phrase": {"type": "string", "description": "A phrase with similar meaning"},
+          "meaningHint": {"type": "string", "description": "Brief hint about the meaning (5-10 words)"}
+        }
+      },
+      "description": "Phrases that express similar ideas"
+    },
+    "oppositePhrases": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["phrase", "meaningHint"],
+        "properties": {
+          "phrase": {"type": "string", "description": "A phrase with opposite meaning"},
+          "meaningHint": {"type": "string", "description": "Brief hint about the meaning (5-10 words)"}
+        }
+      },
+      "description": "Phrases that express opposite ideas"
+    },
+    "seeAlso": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 5,
+      "items": {"type": "string"},
+      "description": "Related phrases worth exploring (thematically connected but not synonymous)"
+    }
+  }
+}
+
+GUIDELINES:
+- Variations are alternate forms of THE SAME phrase (e.g., "break the ice" → "breaking the ice")
+- Similar phrases should have genuinely comparable meaning, not just share words
+- Opposite phrases should exist and be commonly used - don't invent rare ones
+- seeAlso can include thematically related phrases from the same domain
+- meaningHint should be enough for users to recognize if they know the phrase
+- Include regional variations if they exist (American vs British English)

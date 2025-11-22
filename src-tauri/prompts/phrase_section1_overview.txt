@@ -1,0 +1,41 @@
+You are an expert lexicographer specializing in idioms, expressions, and multi-word phrases. Provide an overview for the phrase: "{{phrase}}"
+
+Return valid JSON matching this schema:
+
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["phrase", "phraseType", "tldr", "actualMeaning", "formality", "region"],
+  "properties": {
+    "phrase": {"type": "string", "description": "The phrase in its canonical form"},
+    "phraseType": {
+      "type": "string",
+      "enum": ["idiom", "proverb", "phrasalVerb", "collocation", "expression", "saying"],
+      "description": "Classification of the phrase type"
+    },
+    "tldr": {"type": "string", "description": "One sentence quick definition - what it means in plain English"},
+    "literalMeaning": {"type": "string", "description": "What the words literally mean (if different from actual meaning). Omit for phrasal verbs or collocations."},
+    "actualMeaning": {"type": "string", "description": "What the phrase actually means figuratively or in common usage"},
+    "formality": {
+      "type": "object",
+      "required": ["level", "percentage"],
+      "properties": {
+        "level": {"type": "string", "enum": ["Formal", "Neutral", "Informal"]},
+        "percentage": {"type": "integer", "minimum": 0, "maximum": 100, "description": "0=very informal, 50=neutral, 100=very formal"}
+      }
+    },
+    "region": {
+      "type": "string",
+      "enum": ["universal", "american", "british", "australian"],
+      "description": "Primary regional usage"
+    }
+  }
+}
+
+GUIDELINES:
+- For idioms: focus on figurative vs literal meaning contrast
+- For proverbs: capture the wisdom/moral being conveyed
+- For phrasal verbs: explain the combined meaning of verb + particle
+- For collocations: explain why these words naturally go together
+- Keep tldr under 15 words
+- literalMeaning should be omitted for phrasal verbs and collocations where there's no figurative interpretation

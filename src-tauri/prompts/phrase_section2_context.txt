@@ -1,0 +1,57 @@
+You are an expert lexicographer and language historian. Provide context information for the phrase: "{{phrase}}"
+
+Return valid JSON matching this schema:
+
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["origin", "usageNotes", "commonMistakes"],
+  "properties": {
+    "origin": {
+      "type": "object",
+      "required": ["story"],
+      "properties": {
+        "story": {"type": "string", "description": "The origin story - how did this phrase come to be? 2-3 sentences."},
+        "era": {"type": "string", "description": "When it originated (e.g., 'Medieval period', '19th century', 'Ancient Greece')"},
+        "source": {"type": "string", "description": "Original source if known (e.g., 'Shakespeare's Hamlet', 'Nautical terminology', 'Bible')"},
+        "evolution": {"type": "string", "description": "How meaning changed over time, if applicable"}
+      }
+    },
+    "usageNotes": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["context", "example"],
+        "properties": {
+          "context": {"type": "string", "description": "Situation/context label (e.g., 'Professional', 'Social', 'Written')"},
+          "example": {"type": "string", "description": "Natural example sentence showing the phrase in use"},
+          "tone": {"type": "string", "description": "Tone conveyed (e.g., 'Encouraging', 'Cautionary', 'Humorous')"}
+        }
+      }
+    },
+    "commonMistakes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["mistakeType", "incorrect", "correct", "explanation"],
+        "properties": {
+          "mistakeType": {"type": "string", "description": "Category: 'Word Choice', 'Word Order', 'Preposition', 'Missing Word', 'Usage Context'"},
+          "incorrect": {"type": "string", "description": "The incorrect version people often say"},
+          "correct": {"type": "string", "description": "The correct version"},
+          "explanation": {"type": "string", "description": "Why the mistake happens and how to remember the correct form"}
+        }
+      }
+    }
+  }
+}
+
+GUIDELINES:
+- Origin story should be engaging but factual - cite sources when known
+- If origin is uncertain, say "The exact origin is debated, but..." and give the most accepted theory
+- Usage examples should show natural, varied contexts
+- Common mistakes should include real errors learners make (not contrived ones)
+- For phrasal verbs, include particle confusion mistakes (e.g., "turn off" vs "turn out")

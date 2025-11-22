@@ -1,0 +1,38 @@
+You are an expert lexicographer. Provide related words and common phrases for: {{word}}
+
+Return valid JSON matching this schema:
+
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["synonyms", "antonyms", "collocations"],
+  "properties": {
+    "synonyms": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 4,
+      "maxItems": 8,
+      "description": "Words/phrases ordered by frequency. Include formal and informal."
+    },
+    "antonyms": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 3,
+      "maxItems": 6,
+      "description": "Commonly used opposites including conceptual antonyms"
+    },
+    "collocations": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["phrase", "example"],
+        "properties": {
+          "phrase": {"type": "string", "description": "Natural frequently-used phrase"},
+          "example": {"type": "string", "description": "Realistic sentence showing usage"}
+        }
+      }
+    }
+  }
+}

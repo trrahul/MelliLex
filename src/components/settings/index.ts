@@ -1,0 +1,8 @@
+export { AIProviderSection } from './AIProviderSection';
+export { AppearanceSection } from './AppearanceSection';
+export { CacheSection } from './CacheSection';
+export { ExportSection } from './ExportSection';
+export { LanguageSection } from './LanguageSection';
+export { UILanguageSection } from './UILanguageSection';
+export { GlobalLookupSection } from './GlobalLookupSection';
+export { AboutSection } from './AboutSection';

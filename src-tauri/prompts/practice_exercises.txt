@@ -1,0 +1,27 @@
+Create practice exercises and find related words for '{{word}}'.
+
+Respond with a JSON object in this exact format:
+{
+  "practiceExercises": [
+    {
+      "question": "Choose the correct usage of '{{word}}' in this sentence: 'The report needs _____ financial analysis.'",
+      "exerciseType": "Multiple choice",
+      "options": ["elaborate", "simple", "basic", "quick"],
+      "correctAnswer": "elaborate",
+      "explanation": "'{{word}}' means detailed and comprehensive, making it appropriate for thorough financial analysis.",
+      "isAnswered": false,
+      "userAnswer": ""
+    }
+  ]
+}
+
+CRITICAL JSON SCHEMA REQUIREMENTS:
+- The "options" array must contain ONLY simple strings, never objects
+- Each option must be a simple string like "word" or "phrase"
+- Do not add extra fields to the response beyond practiceExercises
+- Example correct options: ["simple", "complex", "basic", "advanced"]
+- Example WRONG options: [{"text": "simple"}, {"value": "complex"}]
+
+Exercise types to use: "Multiple choice", "Fill in the blank", "Synonym matching", "Usage identification", "True or false"
+Create 4-5 varied exercises that test different aspects: meaning, usage, context, synonyms, and grammar.
+Make questions challenging but fair, with clear explanations.

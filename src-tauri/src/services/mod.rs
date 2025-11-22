@@ -1,0 +1,28 @@
+pub mod ai_provider;
+pub mod anthropic;
+pub mod command_orchestrator;
+#[cfg(test)]
+mod command_orchestrator_tests;
+pub mod dictionary_service;
+pub mod exploration_service;
+pub mod explore_cache_repository;
+pub mod explore_feature_coordinator;
+pub mod export_service;
+pub mod gemini;
+pub mod http_client;
+pub mod mellilex_capture_adapter;
+pub mod mistakes_generator;
+pub mod model_info;
+pub mod mouse_hook;
+pub mod ollama;
+pub mod openai;
+pub mod orchestration;
+pub mod phrase_detection;
+pub mod phrase_service;
+pub mod prompt_manager;
+pub mod provider_http;
+pub mod provider_registry;
+pub mod response_parser;
+pub mod response_processing;
+pub mod settings_service;
+pub mod text_processing;

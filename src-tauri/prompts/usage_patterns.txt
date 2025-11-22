@@ -1,0 +1,24 @@
+Generate usage patterns and contextual examples for the word '{{word}}'.
+
+Respond with a JSON object in this exact format:
+{
+  "usagePatterns": [
+    {
+      "template": "{{word}} [noun]",
+      "patternType": "adjective_phrase",
+      "description": "Description of this usage pattern",
+      "examples": ["example1", "example2", "example3"],
+      "isExpanded": false
+    }
+  ],
+  "contextualExamples": [
+    "In business contexts: 'The proposal needs more {{word}} financial projections.'",
+    "In academic writing: 'The research {{word}}s on three key findings.'",
+    "In casual conversation: 'Could you {{word}} on that idea?'",
+    "In technical documentation: 'The system requires {{word}} configuration.'",
+    "In creative writing: 'The author {{word}}d on the character's background.'"
+  ]
+}
+
+Pattern types to consider: "adjective_phrase", "phrasal_verb", "noun_phrase", "adverbial_phrase", "compound_form"
+Include 4-6 usage patterns and 5-7 contextual examples across different scenarios (business, academic, casual, technical, creative).
