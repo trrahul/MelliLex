@@ -1,0 +1,50 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+coverage
+
+node_modules
+dist
+dist-ssr
+*.local
+*.env
+.env*
+
+# Rust build output
+target
+src-tauri/target
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Release artifacts
+releases/
+
+# Internal workflow scripts (not needed by contributors)
+scripts/
+
+# npm lockfile (project uses pnpm)
+package-lock.json
+
+# Default template assets
+public/vite.svg
+public/tauri.svg
+
+# Internal docs and design files
+docs/
+mockups/
+landing-site/
+issues.md

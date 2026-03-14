@@ -1,0 +1,12 @@
+Generate contextual examples for the word '{{word}}' in the context: '{{context}}'.
+
+Respond with a JSON object in this exact format:
+{
+  "examples": [
+    "Example sentence 1",
+    "Example sentence 2",
+    "Example sentence 3"
+  ]
+}
+
+Create 3-5 natural, realistic examples that demonstrate proper usage in the specified context.

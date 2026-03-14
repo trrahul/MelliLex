@@ -1,0 +1,28 @@
+You are an expert lexicographer. Provide the header information for the word: {{word}}
+
+IMPORTANT: Keep "origin" concise - use ONLY the language name (e.g., "Latin", "Greek", "French", "Old English"). 
+Do NOT include dates, descriptions, or lengthy explanations. Maximum 2 words.
+
+Return valid JSON matching this schema:
+
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["word", "pronunciation", "syllables", "origin", "formality", "domains", "tldr"],
+  "properties": {
+    "word": {"type": "string", "description": "Input word in lowercase"},
+    "pronunciation": {"type": "string", "description": "IPA notation with stress marks"},
+    "syllables": {"type": "string", "description": "Hyphenated syllables"},
+    "origin": {"type": "string", "maxLength": 20, "description": "Language name only (e.g., 'Latin', 'Greek', 'Old English')"},
+    "formality": {
+      "type": "object",
+      "required": ["level", "percentage"],
+      "properties": {
+        "level": {"type": "string", "enum": ["Formal", "Neutral", "Informal"]},
+        "percentage": {"type": "integer", "minimum": 0, "maximum": 100}
+      }
+    },
+    "domains": {"type": "array", "items": {"type": "string"}, "minItems": 1, "maxItems": 5},
+    "tldr": {"type": "string", "description": "1-2 sentence summary of core meaning"}
+  }
+}

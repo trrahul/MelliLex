@@ -1,0 +1,1 @@
+export { PhraseCard } from './PhraseCard';

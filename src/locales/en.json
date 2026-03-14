@@ -1,0 +1,361 @@
+{
+  "common": {
+    "appName": "MelliLex",
+    "search": "Search",
+    "settings": "Settings",
+    "error": "Error",
+    "cancel": "Cancel",
+    "apply": "Apply Changes",
+    "applied": "✓ Applied",
+    "applying": "Applying...",
+    "tryAgain": "Try Again",
+    "regenerate": "Regenerate",
+    "generate": "Generate",
+    "explore": "Explore",
+    "share": "Share",
+    "minimize": "Minimize",
+    "maximize": "Maximize",
+    "restore": "Restore",
+    "close": "Close"
+  },
+  "search": {
+    "placeholder": "Enter word or phrase...",
+    "clear": "Clear search",
+    "submit": "Submit search"
+  },
+  "navigation": {
+    "home": "Define",
+    "explore": "Explore",
+    "history": "History",
+    "saved": "Saved",
+    "settings": "Settings",
+    "lightMode": "Switch to light mode",
+    "darkMode": "Switch to dark mode"
+  },
+  "home": {
+    "title": "MelliLex",
+    "subtitle": "AI-powered word & phrase exploration",
+    "prompt": "Type a word or phrase in the search box above",
+    "tryWords": "Try: \"eloquent\", \"break the ice\", or \"serendipity\""
+  },
+  "sections": {
+    "meanings": "Meanings",
+    "related": "Related Words",
+    "memoryTip": "💡 Memory Tip",
+    "synonyms": "Synonyms",
+    "antonyms": "Antonyms",
+    "collocations": "Common Collocations",
+    "tldr": "💡 In Simple Words"
+  },
+  "settings": {
+    "title": "Settings",
+    "general": {
+      "title": "General",
+      "description": "Language and regional settings",
+      "uiLanguage": "Interface Language",
+      "uiLanguageDesc": "Language of menus, buttons, and labels",
+      "selectUiLanguage": "Select UI language",
+      "explanationLanguage": "Explanation Language",
+      "explanationLanguageDesc": "Language for word definitions and explanations",
+      "selectExplanationLanguage": "Select explanation language",
+      "autoDetected": "· 🌍 Auto-detected",
+      "noteEnglishWords": "📚 English words remain in English. Definitions will be in your selected language.",
+      "noteEffectImmediate": "Changes take effect immediately after clicking Apply",
+      "languageApplied": "Language settings applied successfully"
+    },
+    "language": {
+      "title": "Language",
+      "description": "Control how the interface and explanations are translated",
+      "info": "Switch between interface and explanation languages at any time without restarting the app.",
+      "benefits": {
+        "title": "Why switch languages?",
+        "understand": "Understand nuanced meanings with localized explanations",
+        "confidence": "Build confidence by seeing examples that match your region",
+        "consistency": "Keep the UI consistent across devices and teammates"
+      }
+    },
+    "uiLanguage": {
+      "title": "Interface Language",
+      "description": "Change menu labels, navigation, and controls instantly"
+    },
+    "aiProvider": {
+      "title": "AI Provider",
+      "description": "Configure your AI service and model",
+      "selectProvider": "Select Provider",
+      "ollamaRunning": "Ollama is running",
+      "notDetected": "Not Detected",
+      "apiKey": "API Key",
+      "apiKeyPlaceholder": "Enter your API key",
+      "model": "Model",
+      "selectModel": "Select a model",
+      "modelsFound": "Found {{count}} models installed locally",
+      "apiKeyValid": "API key is valid • {{count}} models loaded",
+      "apiKeyInvalid": "Invalid API key",
+      "apiKeyValid_other": "API key is valid • {{count}} models loaded",
+      "noOllamaModels": "No models found. Make sure Ollama is running.",
+      "ollamaPrivacy": "Running locally - no data leaves your device"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "description": "Customize fonts and visual style",
+      "typography": "Typography",
+      "typographyDesc": "Choose a font combination that suits your reading preference",
+      "fontStyle": "Font Style",
+      "selectFontStyle": "Select font style",
+      "modern": "Modern & Clean",
+      "modernDesc": "Inter for everything",
+      "classic": "Classic Dictionary",
+      "classicDesc": "Inter UI + Crimson Pro content",
+      "friendly": "Friendly & Approachable",
+      "friendlyDesc": "Plus Jakarta Sans + Merriweather",
+      "preview": "Preview",
+      "previewWord": "eloquent",
+      "previewDescription": "Fluent or persuasive in speaking or writing. Having the ability to express ideas clearly and effectively.",
+      "effectNote": "Changes will be applied instantly across the entire app"
+    },
+    "cache": {
+      "title": "Cache",
+      "description": "Manage cached definitions and explorations",
+      "clearCache": "Clear Cache",
+      "clearDefinitions": "Clear Definition Cache",
+      "clearDefinitionsDesc": "Remove all cached word and phrase definitions",
+      "clearExplorations": "Clear Exploration Cache",
+      "clearExplorationsDesc": "Remove all cached explorations",
+      "clearAll": "Clear All Cache",
+      "clearAllDesc": "Remove all cached data (definitions + phrases + explorations)",
+      "clearing": "Clearing...",
+      "confirmClearAll": "This will remove all cached definitions and explorations. This action cannot be undone.",
+      "confirmClearDefinitions": "This will remove all cached word definitions. You can rebuild the cache by searching for words again.",
+      "confirmClearExplorations": "This will remove all cached exploration data. You can rebuild the cache by exploring words again.",
+      "successAll": "Successfully cleared all cache",
+      "successDefinitions": "Successfully cleared definition cache",
+      "successExplorations": "Successfully cleared exploration cache"
+    },
+    "export": {
+      "title": "Export",
+      "description": "Configure markdown export and Capacities sync",
+      "markdownOptions": "Markdown Export Options",
+      "markdownOptionsDesc": "Configure what to include when exporting to markdown",
+      "capacitiesIntegration": "Capacities Integration",
+      "capacitiesDesc": "Export word definitions directly to your Capacities space",
+      "enableCapacities": "Enable Capacities export",
+      "spaceId": "Space ID",
+      "spaceIdHelp": "Found in Capacities Settings → Integrations",
+      "spaceIdPlaceholder": "your-space-id",
+      "apiToken": "API Token",
+      "apiTokenPlaceholder": "cap_...",
+      "tags": "Tags (comma-separated)",
+      "tagsPlaceholder": "vocabulary, language, definitions",
+      "includeExploration": "Include exploration insights (formality, domains, usage, practice) in exports",
+      "includeTimestamp": "Include timestamp footer in exported markdown"
+    },
+    "about": {
+      "title": "About",
+      "description": "App information and updates",
+      "tagline": "AI-Powered Dictionary",
+      "version": "Version",
+      "about": "About",
+      "features": "Features",
+      "feature1": "AI-powered word definitions with multiple providers",
+      "feature2": "Advanced word exploration (formality, domains, usage patterns)",
+      "feature3": "Export to Markdown and Capacities integration",
+      "feature4": "Smart caching for faster lookups",
+      "feature5": "Multi-language support",
+      "links": "Links",
+      "github": "GitHub Repository",
+      "reportIssue": "Report an Issue",
+      "license": "License",
+      "madeWith": "Made with",
+      "by": "by",
+      "checkUpdates": "Check for Updates",
+      "checkingUpdates": "Checking for updates...",
+      "upToDate": "You are on the latest version",
+      "updateAvailable": "Update available: {{version}}",
+      "updateCheckFailed": "Failed to check for updates"
+    },
+    "update": {
+      "title": "Update Available",
+      "errorTitle": "Update Failed",
+      "description": "A new version of MelliLex is available.",
+      "downloading": "Downloading update...",
+      "readyToRestart": "Update installed. Restart to apply changes.",
+      "errorOccurred": "Something went wrong while updating.",
+      "later": "Later",
+      "downloadInstall": "Download & Install",
+      "restartNow": "Restart Now"
+    },
+    "globalLookup": {
+      "title": "Global Lookup",
+      "description": "Global shortcut for instant word definitions",
+      "enable": "Enable Global Lookup",
+      "enableDesc": "Look up words from any app using shortcuts",
+      "enabled": "Global lookup enabled",
+      "disabled": "Global lookup disabled",
+      "toggleFailed": "Failed to toggle global lookup",
+      "howToUse": "How to Use",
+      "instruction": "Place your cursor on any word",
+      "methodKeyboard": "Press",
+      "methodMouse": "Hold <1>ALT</1> and right-click",
+      "note": "Works across all applications. MelliLex must be running (can be in tray)."
+    }
+  },
+  "spellCheck": {
+    "title": "Did you mean?",
+    "misspelled": "The word \"{{word}}\" may be misspelled. Select a correction below:",
+    "recommended": "(recommended)",
+    "noSuggestions": "No suggestions available",
+    "useAnyway": "Use \"{{word}}\" anyway"
+  },
+  "explore": {
+    "title": "Explore",
+    "subtitle": "Word Exploration",
+    "backToDefine": "Back to Define",
+    "searchPrompt": "Search for a word to start exploring",
+    "formality": "Formality",
+    "domains": "Domains",
+    "usage": "Usage",
+    "mistakes": "Mistakes",
+    "custom": "Custom",
+    "practice": "Practice",
+    "formalityCard": {
+      "title": "Generate Formality Analysis",
+      "description": "See how formal \"{{word}}\" is and get alternative words for casual or formal contexts.",
+      "sectionTitle": "Formality Analysis",
+      "analyzing": "Analyzing formality levels...",
+      "informal": "Informal",
+      "neutral": "Neutral",
+      "formal": "Formal",
+      "formalityLevel": "Formality Level",
+      "yourSearch": "Your Search",
+      "moreOptions": "More Options"
+    },
+    "domainsCard": {
+      "title": "Generate Domain Examples",
+      "description": "Explore how \"{{word}}\" is used in different domains like business, tech, and academia.",
+      "sectionTitle": "Domain Examples",
+      "analyzing": "Analyzing domain usage...",
+      "collocations": "Common Collocations",
+      "examples": "Examples"
+    },
+    "usageCard": {
+      "title": "Generate Usage Patterns",
+      "description": "Learn grammatical patterns and usage guidelines for \"{{word}}\".",
+      "sectionTitle": "Usage Patterns",
+      "analyzing": "Analyzing usage patterns..."
+    },
+    "mistakesCard": {
+      "title": "Generate Common Mistakes",
+      "description": "Learn typical errors learners make with \"{{word}}\" and how to avoid them.",
+      "sectionTitle": "Common Mistakes",
+      "analyzing": "Analyzing common errors...",
+      "incorrect": "Incorrect",
+      "correctUsage": "Correct Usage",
+      "noMistakes": "No common mistakes found."
+    },
+    "customCard": {
+      "inputLabel": "Describe your context:",
+      "placeholder": "Example: Writing a job application email for a software engineer position",
+      "placeholderAlt": "Example: Writing a formal business proposal",
+      "sectionTitle": "Custom Context Examples",
+      "contextLabel": "Context: {{context}}",
+      "analyzing": "Generating custom examples...",
+      "tryDifferent": "Try a different context:",
+      "generateNew": "Generate New Examples"
+    },
+    "practiceCard": {
+      "title": "Generate Practice Exercises",
+      "description": "Test your understanding with multiple choice questions.",
+      "sectionTitle": "Practice Exercises",
+      "analyzing": "Generating practice exercises...",
+      "explanation": "Explanation:",
+      "checkAnswers": "Check Answers"
+    }
+  },
+  "history": {
+    "title": "History",
+    "description": "Track your word lookups and learning progress",
+    "searchPlaceholder": "Search your history",
+    "noMatches": "No results",
+    "noMatchesDesc": "Try a different search term or clear the filter",
+    "empty": "No search history yet",
+    "emptyDesc": "Start searching for words to see them here",
+    "clear": "Clear All",
+    "clearConfirmTitle": "Clear all history?",
+    "clearConfirmDesc": "This will permanently delete all your search history. This action cannot be undone.",
+    "successCleared": "History cleared",
+    "failedClear": "Failed to clear history",
+    "itemDeleted": "Item deleted",
+    "failedDelete": "Failed to delete item",
+    "deleteItem": "Delete",
+    "stats": {
+      "totalWords": "Total Words",
+      "unique": "Unique",
+      "thisWeek": "This Week",
+      "perDay": "Per Day"
+    },
+    "sections": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "thisWeek": "This Week",
+      "thisMonth": "This Month",
+      "older": "Older"
+    },
+    "table": {
+      "word": "Word",
+      "time": "Time",
+      "provider": "Provider"
+    }
+  },
+  "exportDialog": {
+    "title": "Export \"{{word}}\"",
+    "export": "Export",
+    "description": "Save the current word as markdown or send it to your Capacities daily note.",
+    "exportMarkdown": "Export as Markdown",
+    "saving": "Saving…",
+    "sendCapacities": "Send to Capacities",
+    "sending": "Sending…",
+    "configureFirst": "Configure Capacities first",
+    "capacitiesNote": "Configure Capacities in Settings to enable one-click sharing",
+    "markdownSuccess": "Saved to {{path}}",
+    "capacitiesSuccess": "Shared \"{{word}}\" with Capacities"
+  },
+  "wordHeader": {
+    "copiedToClipboard": "Copied to clipboard",
+    "failedToCopy": "Failed to copy",
+    "origin": "Origin",
+    "formality": "Formality",
+    "usedIn": "Used in",
+    "pronounceAriaLabel": "Pronounce word"
+  },
+  "errors": {
+    "cacheOperation": "Failed to perform cache operation",
+    "providerConfigurationRequired": "Provider configuration required"
+  },
+  "phrase": {
+    "inANutshell": "In a nutshell",
+    "literalMeaning": "Literal meaning",
+    "actualMeaning": "Actual meaning",
+    "meaning": "Meaning",
+    "pronounce": "Pronounce",
+    "originStory": "Origin Story",
+    "usageNotes": "Usage Notes",
+    "commonMistakes": "Common Mistakes",
+    "variations": "Variations",
+    "similarMeaning": "Similar Meaning",
+    "oppositeMeaning": "Opposite Meaning",
+    "seeAlso": "See Also",
+    "exportSuccess": "Exported to {{path}}",
+    "exportNoData": "No phrase data to export",
+    "shareTitle": "Phrase",
+    "copiedToClipboard": "Copied to clipboard",
+    "copyFailed": "Failed to copy",
+    "incorrect": "Incorrect",
+    "correctUsage": "Correct Usage",
+    "regions": {
+      "universal": "Universal",
+      "american": "US",
+      "british": "UK",
+      "australian": "AU"
+    }
+  }
+}

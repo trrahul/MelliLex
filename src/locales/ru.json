@@ -1,0 +1,368 @@
+{
+  "common": {
+    "appName": "MelliLex",
+    "search": "Поиск",
+    "settings": "Настройки",
+    "error": "Ошибка",
+    "cancel": "Отмена",
+    "apply": "Применить изменения",
+    "applied": "✓ Применено",
+    "applying": "Применение...",
+    "tryAgain": "Повторить",
+    "regenerate": "Сгенерировать снова",
+    "generate": "Сгенерировать",
+    "explore": "Исследовать",
+    "share": "Поделиться",
+    "minimize": "Свернуть",
+    "maximize": "Развернуть",
+    "restore": "Восстановить",
+    "close": "Закрыть"
+  },
+  "search": {
+    "placeholder": "Введите слово или фразу...",
+    "clear": "Очистить",
+    "submit": "Найти"
+  },
+  "navigation": {
+    "home": "Определить",
+    "history": "История",
+    "saved": "Сохранённые",
+    "settings": "Настройки",
+    "lightMode": "Переключить на светлую тему",
+    "darkMode": "Переключить на тёмную тему",
+    "explore": "Исследовать"
+  },
+  "home": {
+    "title": "MelliLex",
+    "subtitle": "Исследование слов и фраз с ИИ",
+    "prompt": "Введите слово или фразу в поле поиска выше",
+    "tryWords": "Попробуйте: \"eloquent\", \"break the ice\" или \"serendipity\""
+  },
+  "sections": {
+    "meanings": "Значения",
+    "related": "Связанные слова",
+    "memoryTip": "💡 Совет для запоминания",
+    "synonyms": "Синонимы",
+    "antonyms": "Антонимы",
+    "collocations": "Устойчивые сочетания",
+    "tldr": "💡 Проще говоря"
+  },
+  "settings": {
+    "title": "Настройки",
+    "general": {
+      "title": "Общие",
+      "description": "Языковые и региональные параметры",
+      "uiLanguage": "Язык интерфейса",
+      "uiLanguageDesc": "Язык меню, кнопок и подписей",
+      "explanationLanguage": "Язык объяснений",
+      "explanationLanguageDesc": "Язык определений и объяснений слов",
+      "autoDetected": "· 🌍 Автоопределение",
+      "noteEnglishWords": "📚 Английские слова остаются на английском, а определения будут на выбранном языке.",
+      "noteEffectImmediate": "Изменения вступают в силу сразу после нажатия «Применить»",
+      "languageApplied": "Языковые настройки успешно применены",
+      "selectUiLanguage": "Выберите язык интерфейса",
+      "selectExplanationLanguage": "Выберите язык пояснений"
+    },
+    "language": {
+      "title": "Язык",
+      "description": "Управление переводом интерфейса и объяснений",
+      "info": "Переключайте язык интерфейса и объяснений в любое время без перезапуска.",
+      "benefits": {
+        "title": "Зачем менять язык?",
+        "understand": "Понимайте нюансы с локализованными объяснениями",
+        "confidence": "Обретайте уверенность с примерами, подходящими вашему региону",
+        "consistency": "Сохраняйте единообразие интерфейса на всех устройствах и в команде"
+      }
+    },
+    "aiProvider": {
+      "title": "Провайдер ИИ",
+      "description": "Настройте сервис ИИ и модель",
+      "selectProvider": "Выберите провайдера",
+      "notDetected": "Не обнаружено",
+      "apiKey": "API-ключ",
+      "apiKeyPlaceholder": "Введите API-ключ",
+      "model": "Модель",
+      "apiKeyValid": "API-ключ действителен • загружено моделей: {{count}}",
+      "apiKeyInvalid": "Недействительный API-ключ",
+      "apiKeyValid_other": "API-ключ действителен • загружено {{count}} моделей",
+      "noOllamaModels": "Модели не найдены. Выполните 'ollama pull <модель>', чтобы загрузить.",
+      "ollamaRunning": "Ollama is running",
+      "selectModel": "Select a model",
+      "modelsFound": "Found {{count}} models installed locally",
+      "ollamaPrivacy": "Running locally - no data leaves your device"
+    },
+    "appearance": {
+      "title": "Оформление",
+      "description": "Настройте шрифты и визуальный стиль",
+      "typography": "Типографика",
+      "typographyDesc": "Выберите сочетание шрифтов под ваши предпочтения",
+      "modern": "Современно и лаконично",
+      "modernDesc": "Inter для всех элементов",
+      "classic": "Классический словарь",
+      "classicDesc": "Интерфейс Inter UI + контент Crimson Pro",
+      "friendly": "Дружелюбно и тепло",
+      "friendlyDesc": "Plus Jakarta Sans + Merriweather",
+      "preview": "Предпросмотр",
+      "effectNote": "Изменения применяются мгновенно по всему приложению",
+      "fontStyle": "Стиль шрифта",
+      "selectFontStyle": "Выберите стиль шрифта",
+      "previewWord": "eloquent",
+      "previewDescription": "Красноречивый или убедительный в речи или письме. Способный ясно и эффективно выражать идеи."
+    },
+    "cache": {
+      "title": "Кэш",
+      "description": "Управляйте сохранёнными определениями и исследованиями",
+      "clearCache": "Очистить кэш",
+      "clearDefinitions": "Очистить кэш определений",
+      "clearDefinitionsDesc": "Удалить все сохранённые определения слов и фраз",
+      "clearExplorations": "Очистить кэш исследований",
+      "clearExplorationsDesc": "Удалить все сохранённые исследования",
+      "clearAll": "Очистить весь кэш",
+      "clearAllDesc": "Удалить все кэшированные данные (определения + фразы + исследования)",
+      "clearing": "Очистка...",
+      "confirmClearAll": "Все сохранённые определения и исследования будут удалены. Это действие нельзя отменить.",
+      "confirmClearDefinitions": "Все определения слов будут удалены. Вы можете восстановить кэш, выполняя поиск снова.",
+      "confirmClearExplorations": "Все исследования будут удалены. Сгенерируйте их вновь, исследуя слова снова.",
+      "successAll": "Весь кэш успешно очищен",
+      "successDefinitions": "Кэш определений очищен",
+      "successExplorations": "Кэш исследований очищен"
+    },
+    "export": {
+      "title": "Экспорт",
+      "description": "Настройка экспорта markdown и синхронизации Capacities",
+      "markdownOptions": "Параметры экспорта Markdown",
+      "markdownOptionsDesc": "Настройте, что включать при экспорте в markdown",
+      "capacitiesIntegration": "Интеграция с Capacities",
+      "capacitiesDesc": "Экспортируйте определения слов прямо в своё пространство Capacities",
+      "enableCapacities": "Включить экспорт в Capacities",
+      "spaceId": "ID пространства",
+      "spaceIdHelp": "Находится в Capacities → Settings → Integrations",
+      "spaceIdPlaceholder": "ваш-space-id",
+      "apiToken": "API-токен",
+      "apiTokenPlaceholder": "cap_...",
+      "tags": "Теги (через запятую)",
+      "tagsPlaceholder": "словарь, язык, определения",
+      "includeExploration": "Включать данные исследований",
+      "includeTimestamp": "Добавлять метку времени в заголовок"
+    },
+    "about": {
+      "title": "О приложении",
+      "description": "Информация и обновления",
+      "comingSoon": "Раздел появится позже. Мы добавляем больше настроек, чтобы вы получили больше контроля.",
+      "version": "Версия",
+      "github": "GitHub-репозиторий",
+      "reportIssue": "Сообщить о проблеме",
+      "license": "Лицензия",
+      "checkUpdates": "Проверить обновления",
+      "checkingUpdates": "Проверяем обновления...",
+      "upToDate": "У вас последняя версия",
+      "updateAvailable": "Доступно обновление: {{version}}",
+      "updateCheckFailed": "Не удалось проверить обновления",
+      "tagline": "Словарь на основе ИИ",
+      "about": "О приложении",
+      "features": "Возможности",
+      "feature1": "ИИ-определения слов с несколькими провайдерами",
+      "feature2": "Расширенное исследование слов (формальность, домены, модели использования)",
+      "feature3": "Экспорт в Markdown и интеграция с Capacities",
+      "feature4": "Умное кэширование для быстрого поиска",
+      "feature5": "Многоязычная поддержка",
+      "links": "Ссылки",
+      "madeWith": "Создано с помощью",
+      "by": "автор"
+    },
+    "update": {
+      "title": "Доступно обновление",
+      "errorTitle": "Ошибка обновления",
+      "description": "Доступна новая версия MelliLex.",
+      "downloading": "Загрузка обновления...",
+      "readyToRestart": "Обновление установлено. Перезапустите для применения.",
+      "errorOccurred": "Произошла ошибка при обновлении.",
+      "later": "Позже",
+      "downloadInstall": "Скачать и установить",
+      "restartNow": "Перезапустить сейчас"
+    },
+    "globalLookup": {
+      "title": "Глобальный поиск",
+      "description": "Глобальное сочетание клавиш для мгновенных определений",
+      "enable": "Включить глобальный поиск",
+      "enableDesc": "Искать слова из любого приложения с помощью сочетаний клавиш",
+      "enabled": "Глобальный поиск включён",
+      "disabled": "Глобальный поиск отключён",
+      "toggleFailed": "Не удалось переключить глобальный поиск",
+      "howToUse": "Как использовать",
+      "instruction": "Наведите курсор на любое слово",
+      "methodKeyboard": "Нажмите",
+      "methodMouse": "Удерживайте <1>ALT</1> и щёлкните правой кнопкой",
+      "note": "Работает во всех приложениях. MelliLex должен быть запущен (можно свернуть в трей)."
+    },
+    "uiLanguage": {
+      "title": "Язык интерфейса",
+      "description": "Мгновенно измените надписи меню, навигацию и элементы управления"
+    },
+    "provider": {
+      "ollamaRunning": "Ollama запущена",
+      "selectModel": "Выберите модель",
+      "modelsFound": "Найдено {{count}} моделей, установленных локально",
+      "ollamaPrivacy": "Работает локально – данные не покидают ваше устройство"
+    }
+  },
+  "spellCheck": {
+    "title": "Возможно, вы имели в виду?",
+    "misspelled": "Слово \"{{word}}\" может быть написано с ошибкой. Выберите исправление ниже:",
+    "recommended": "(рекомендуется)",
+    "noSuggestions": "Предложений нет",
+    "useAnyway": "Использовать \"{{word}}\" как есть"
+  },
+  "explore": {
+    "subtitle": "Исследование слова",
+    "searchPrompt": "Найдите слово, чтобы начать исследование",
+    "formality": "Степень формальности",
+    "domains": "Сферы применения",
+    "usage": "Модели использования",
+    "mistakes": "Ошибки",
+    "custom": "Пользовательский контекст",
+    "practice": "Практика",
+    "formalityCard": {
+      "title": "Сгенерировать анализ формальности",
+      "description": "Узнайте, насколько формально слово \"{{word}}\", и получите альтернативы для разных ситуаций.",
+      "sectionTitle": "Анализ формальности",
+      "analyzing": "Идёт анализ формальности...",
+      "informal": "Неформально",
+      "neutral": "Нейтрально",
+      "formal": "Формально",
+      "formalityLevel": "Уровень формальности",
+      "yourSearch": "Ваш запрос",
+      "moreOptions": "Другие варианты"
+    },
+    "domainsCard": {
+      "title": "Сгенерировать примеры по тематикам",
+      "description": "Посмотрите, как \"{{word}}\" используется в бизнесе, технологиях и академической среде.",
+      "sectionTitle": "Примеры по сферам",
+      "analyzing": "Анализ использования по сферам...",
+      "collocations": "Частые сочетания",
+      "examples": "Примеры"
+    },
+    "usageCard": {
+      "title": "Сгенерировать модели использования",
+      "description": "Изучите грамматические конструкции и рекомендации по использованию \"{{word}}\".",
+      "sectionTitle": "Модели использования",
+      "analyzing": "Анализируем модели использования..."
+    },
+    "mistakesCard": {
+      "title": "Сгенерировать типичные ошибки",
+      "description": "Узнайте о типичных ошибках со словом \"{{word}}\" и способах их избежать.",
+      "sectionTitle": "Распространённые ошибки",
+      "analyzing": "Анализируем ошибки...",
+      "incorrect": "Неправильно",
+      "correctUsage": "Правильное употребление",
+      "noMistakes": "Распространённых ошибок не найдено."
+    },
+    "customCard": {
+      "placeholder": "Пример: письмо-заявка на должность инженера-программиста",
+      "sectionTitle": "Примеры для вашего контекста",
+      "analyzing": "Создаём персонализированные примеры...",
+      "contextLabel": "Контекст: {{context}}",
+      "generateNew": "Сгенерировать новые примеры",
+      "inputLabel": "Опишите контекст:",
+      "placeholderAlt": "Пример: написать официальное коммерческое предложение",
+      "tryDifferent": "Попробуйте другой контекст:"
+    },
+    "practiceCard": {
+      "title": "Сгенерировать практические задания",
+      "description": "Проверьте себя с помощью вопросов с вариантом ответа.",
+      "sectionTitle": "Практические задания",
+      "analyzing": "Генерация тренировочных заданий...",
+      "checkAnswers": "Проверить ответы",
+      "explanation": "Пояснение:"
+    },
+    "title": "Исследовать",
+    "backToDefine": "Назад к определению"
+  },
+  "history": {
+    "title": "История",
+    "description": "Отслеживайте свои запросы и прогресс обучения",
+    "empty": "История поисков пока пуста",
+    "emptyDesc": "Начните искать слова, и они появятся здесь",
+    "clear": "Очистить всё",
+    "clearConfirmTitle": "Очистить всю историю?",
+    "clearConfirmDesc": "Это навсегда удалит всю историю поиска. Действие нельзя отменить.",
+    "successCleared": "История очищена",
+    "failedClear": "Не удалось очистить историю",
+    "itemDeleted": "Запись удалена",
+    "failedDelete": "Не удалось удалить запись",
+    "deleteItem": "Удалить",
+    "searchPlaceholder": "Поиск по истории...",
+    "noMatches": "Нет совпадений",
+    "noMatchesDesc": "Попробуйте другой запрос",
+    "stats": {
+      "totalWords": "Всего слов",
+      "unique": "Уникальные",
+      "thisWeek": "На этой неделе",
+      "perDay": "В день"
+    },
+    "sections": {
+      "today": "Сегодня",
+      "yesterday": "Вчера",
+      "thisWeek": "Эта неделя",
+      "thisMonth": "Этот месяц",
+      "older": "Ранее"
+    },
+    "table": {
+      "word": "Слово",
+      "time": "Время",
+      "provider": "Провайдер"
+    }
+  },
+  "exportDialog": {
+    "title": "Экспорт слова",
+    "description": "Сохраните текущее слово как Markdown или отправьте в ежедневную заметку Capacities.",
+    "exportMarkdown": "Экспорт в Markdown",
+    "sendCapacities": "Отправить в Capacities",
+    "sending": "Отправка…",
+    "configureFirst": "Сначала настройте Capacities",
+    "capacitiesNote": "Настройте Capacities в параметрах, чтобы включить обмен в один клик",
+    "capacitiesSuccess": "\"{{word}}\" отправлено в Capacities",
+    "export": "Экспорт",
+    "markdownSuccess": "Сохранено в {{path}}",
+    "saving": "Сохранение..."
+  },
+  "wordHeader": {
+    "copiedToClipboard": "Скопировано в буфер обмена",
+    "failedToCopy": "Не удалось скопировать",
+    "formality": "Уровень формальности",
+    "origin": "Происхождение",
+    "usedIn": "Используется в",
+    "pronounceAriaLabel": "Произнести слово"
+  },
+  "errors": {
+    "cacheOperation": "Не удалось выполнить операцию с кэшем",
+    "providerConfigurationRequired": "Требуется настройка провайдера"
+  },
+  "phrase": {
+    "inANutshell": "В двух словах",
+    "literalMeaning": "Буквальное значение",
+    "actualMeaning": "Фактическое значение",
+    "meaning": "Значение",
+    "pronounce": "Произнести",
+    "originStory": "История происхождения",
+    "usageNotes": "Заметки об использовании",
+    "commonMistakes": "Частые ошибки",
+    "variations": "Варианты",
+    "similarMeaning": "Похожее значение",
+    "oppositeMeaning": "Противоположное значение",
+    "seeAlso": "См. также",
+    "exportSuccess": "Экспортировано в {{path}}",
+    "exportNoData": "Нет данных фразы для экспорта",
+    "shareTitle": "Фраза",
+    "copiedToClipboard": "Скопировано в буфер обмена",
+    "copyFailed": "Не удалось скопировать",
+    "incorrect": "Неправильно",
+    "correctUsage": "Правильное употребление",
+    "regions": {
+      "universal": "Universal",
+      "american": "US",
+      "british": "UK",
+      "australian": "AU"
+    }
+  }
+}

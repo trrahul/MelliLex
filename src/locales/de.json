@@ -1,0 +1,368 @@
+{
+  "common": {
+    "appName": "MelliLex",
+    "search": "Suchen",
+    "settings": "Einstellungen",
+    "error": "Fehler",
+    "cancel": "Abbrechen",
+    "apply": "Änderungen übernehmen",
+    "applied": "✓ Übernommen",
+    "applying": "Wird übernommen...",
+    "tryAgain": "Erneut versuchen",
+    "regenerate": "Neu generieren",
+    "generate": "Generieren",
+    "explore": "Entdecken",
+    "share": "Teilen",
+    "minimize": "Minimieren",
+    "maximize": "Maximieren",
+    "restore": "Wiederherstellen",
+    "close": "Schließen"
+  },
+  "search": {
+    "placeholder": "Wort oder Ausdruck eingeben...",
+    "clear": "Suche löschen",
+    "submit": "Suche absenden"
+  },
+  "navigation": {
+    "home": "Definieren",
+    "history": "Verlauf",
+    "saved": "Gespeichert",
+    "settings": "Einstellungen",
+    "lightMode": "Zum hellen Modus wechseln",
+    "darkMode": "Zum dunklen Modus wechseln",
+    "explore": "Entdecken"
+  },
+  "home": {
+    "title": "MelliLex",
+    "subtitle": "KI-gestützte Wort- & Ausdruckserkundung",
+    "prompt": "Gib ein Wort oder einen Ausdruck im Suchfeld ein",
+    "tryWords": "Probiere: \"eloquent\", \"break the ice\" oder \"serendipity\""
+  },
+  "sections": {
+    "meanings": "Bedeutungen",
+    "related": "Verwandte Wörter",
+    "memoryTip": "💡 Merkhilfe",
+    "synonyms": "Synonyme",
+    "antonyms": "Antonyme",
+    "collocations": "Typische Kollokationen",
+    "tldr": "💡 Kurz gesagt"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "general": {
+      "title": "Allgemein",
+      "description": "Sprach- und Regionseinstellungen",
+      "uiLanguage": "Interface-Sprache",
+      "uiLanguageDesc": "Sprache für Menüs, Buttons und Labels",
+      "explanationLanguage": "Erklärungssprache",
+      "explanationLanguageDesc": "Sprache für Wortdefinitionen und Erklärungen",
+      "autoDetected": "· 🌍 Automatisch erkannt",
+      "noteEnglishWords": "📚 Englische Wörter bleiben auf Englisch. Definitionen erscheinen in deiner gewählten Sprache.",
+      "noteEffectImmediate": "Änderungen gelten sofort nach dem Klick auf Übernehmen",
+      "languageApplied": "Spracheinstellungen erfolgreich übernommen",
+      "selectUiLanguage": "Oberflächensprache auswählen",
+      "selectExplanationLanguage": "Erklärungssprache auswählen"
+    },
+    "language": {
+      "title": "Sprache",
+      "description": "Steuere, wie Interface und Erklärungen übersetzt werden",
+      "info": "Wechsle jederzeit zwischen Interface- und Erklärungssprache, ohne die App neu zu starten.",
+      "benefits": {
+        "title": "Warum die Sprache wechseln?",
+        "understand": "Verstehe nuancierte Bedeutungen mit lokalisierten Erklärungen",
+        "confidence": "Gewinne Sicherheit durch Beispiele, die zu deiner Region passen",
+        "consistency": "Halte die UI auf allen Geräten und im Team konsistent"
+      }
+    },
+    "aiProvider": {
+      "title": "KI-Anbieter",
+      "description": "Konfiguriere deinen KI-Dienst und das Modell",
+      "selectProvider": "Anbieter auswählen",
+      "notDetected": "Nicht erkannt",
+      "apiKey": "API-Schlüssel",
+      "apiKeyPlaceholder": "API-Schlüssel eingeben",
+      "model": "Modell",
+      "apiKeyValid": "API-Schlüssel gültig • {{count}} Modelle geladen",
+      "apiKeyInvalid": "Ungültiger API-Schlüssel",
+      "apiKeyValid_other": "API-Schlüssel gültig • {{count}} Modelle geladen",
+      "noOllamaModels": "Keine Modelle gefunden. Stelle sicher, dass Ollama läuft.",
+      "ollamaRunning": "Ollama is running",
+      "selectModel": "Select a model",
+      "modelsFound": "Found {{count}} models installed locally",
+      "ollamaPrivacy": "Running locally - no data leaves your device"
+    },
+    "appearance": {
+      "title": "Erscheinungsbild",
+      "description": "Passe Schriftarten und Stil an",
+      "typography": "Typografie",
+      "typographyDesc": "Wähle eine Schriftkombination passend zu deinem Lesestil",
+      "modern": "Modern & klar",
+      "modernDesc": "Inter für alles",
+      "classic": "Klassisches Wörterbuch",
+      "classicDesc": "Inter UI + Crimson Pro für Inhalte",
+      "friendly": "Freundlich & nahbar",
+      "friendlyDesc": "Plus Jakarta Sans + Merriweather",
+      "preview": "Vorschau",
+      "effectNote": "Änderungen gelten sofort in der gesamten App",
+      "fontStyle": "Schriftstil",
+      "selectFontStyle": "Schriftstil auswählen",
+      "previewWord": "eloquent",
+      "previewDescription": "Redegewandt oder überzeugend im Sprechen oder Schreiben. Die Fähigkeit besitzend, Ideen klar und wirkungsvoll auszudrücken."
+    },
+    "cache": {
+      "title": "Cache",
+      "description": "Verwalte gespeicherte Definitionen und Erkundungen",
+      "clearCache": "Cache leeren",
+      "clearDefinitions": "Definitions-Cache leeren",
+      "clearDefinitionsDesc": "Alle gespeicherten Wort- und Redewendungsdefinitionen entfernen",
+      "clearExplorations": "Erkundungs-Cache leeren",
+      "clearExplorationsDesc": "Alle gespeicherten Erkundungen entfernen",
+      "clearAll": "Gesamten Cache leeren",
+      "clearAllDesc": "Alle Cache-Daten entfernen (Definitionen + Redewendungen + Erkundungen)",
+      "clearing": "Wird geleert...",
+      "confirmClearAll": "Dadurch werden alle gespeicherten Definitionen und Erkundungen entfernt. Dies kann nicht rückgängig gemacht werden.",
+      "confirmClearDefinitions": "Dadurch werden alle gespeicherten Wortdefinitionen gelöscht. Durch erneutes Suchen wird der Cache neu aufgebaut.",
+      "confirmClearExplorations": "Dadurch werden alle gespeicherten Erkundungen gelöscht. Erzeuge sie erneut, indem du Wörter erneut erkundest.",
+      "successAll": "Gesamter Cache erfolgreich geleert",
+      "successDefinitions": "Definitions-Cache erfolgreich geleert",
+      "successExplorations": "Erkundungs-Cache erfolgreich geleert"
+    },
+    "export": {
+      "title": "Exportieren",
+      "description": "Markdown-Export und Capacities-Sync konfigurieren",
+      "markdownOptions": "Markdown-Exportoptionen",
+      "markdownOptionsDesc": "Konfigurieren Sie, was beim Export nach Markdown enthalten sein soll",
+      "capacitiesIntegration": "Capacities-Integration",
+      "capacitiesDesc": "Exportiere Wortdefinitionen direkt in deinen Capacities-Space",
+      "enableCapacities": "Capacities-Export aktivieren",
+      "spaceId": "Space-ID",
+      "spaceIdHelp": "Zu finden unter Capacities → Einstellungen → Integrationen",
+      "spaceIdPlaceholder": "deine-space-id",
+      "apiToken": "API-Token",
+      "apiTokenPlaceholder": "cap_...",
+      "tags": "Tags (durch Komma getrennt)",
+      "tagsPlaceholder": "Vokabular, Sprache, Definitionen",
+      "includeExploration": "Erkenntnisse aus Erkundungen (Formalität, Domänen, Verwendung, Übungen) in Exporte einbeziehen",
+      "includeTimestamp": "Zeitstempel im Titel einfügen"
+    },
+    "about": {
+      "title": "Info",
+      "description": "App-Informationen und Updates",
+      "comingSoon": "Dieser Bereich ist bald verfügbar. Wir arbeiten an weiteren Optionen für mehr Kontrolle.",
+      "version": "Version",
+      "github": "GitHub-Repository",
+      "reportIssue": "Problem melden",
+      "license": "Lizenz",
+      "checkUpdates": "Nach Updates suchen",
+      "checkingUpdates": "Suche nach Updates...",
+      "upToDate": "Sie haben die neueste Version",
+      "updateAvailable": "Update verfügbar: {{version}}",
+      "updateCheckFailed": "Update-Prüfung fehlgeschlagen",
+      "tagline": "KI-gestütztes Wörterbuch",
+      "about": "Über",
+      "features": "Funktionen",
+      "feature1": "KI-gestützte Wortdefinitionen mit mehreren Anbietern",
+      "feature2": "Erweiterte Worterkundung (Formalität, Fachgebiete, Verwendungsmuster)",
+      "feature3": "Export als Markdown und Capacities-Integration",
+      "feature4": "Intelligentes Caching für schnellere Abfragen",
+      "feature5": "Mehrsprachige Unterstützung",
+      "links": "Links",
+      "madeWith": "Erstellt mit",
+      "by": "von"
+    },
+    "update": {
+      "title": "Update verfügbar",
+      "errorTitle": "Aktualisierung fehlgeschlagen",
+      "description": "Eine neue Version von MelliLex ist verfügbar.",
+      "downloading": "Update wird heruntergeladen...",
+      "readyToRestart": "Update installiert. Neustart zum Anwenden.",
+      "errorOccurred": "Beim Aktualisieren ist ein Fehler aufgetreten.",
+      "later": "Später",
+      "downloadInstall": "Herunterladen & Installieren",
+      "restartNow": "Jetzt neu starten"
+    },
+    "globalLookup": {
+      "title": "Globale Suche",
+      "description": "Globaler Shortcut für sofortige Wortdefinitionen",
+      "enable": "Globale Suche aktivieren",
+      "enableDesc": "Wörter aus jeder App mit Shortcuts nachschlagen",
+      "enabled": "Globale Suche aktiviert",
+      "disabled": "Globale Suche deaktiviert",
+      "toggleFailed": "Fehler beim Umschalten der globalen Suche",
+      "howToUse": "Anleitung",
+      "instruction": "Platziere den Cursor auf ein Wort",
+      "methodKeyboard": "Drücke",
+      "methodMouse": "Halte <1>ALT</1> gedrückt und klicke rechts",
+      "note": "Funktioniert in allen Anwendungen. MelliLex muss laufen (kann im Tray sein)."
+    },
+    "uiLanguage": {
+      "title": "Oberflächensprache",
+      "description": "Menübezeichnungen, Navigation und Steuerung sofort ändern"
+    },
+    "provider": {
+      "ollamaRunning": "Ollama läuft",
+      "selectModel": "Modell auswählen",
+      "modelsFound": "{{count}} lokal installierte Modelle gefunden",
+      "ollamaPrivacy": "Läuft lokal – keine Daten verlassen Ihr Gerät"
+    }
+  },
+  "spellCheck": {
+    "title": "Meintest du?",
+    "misspelled": "Das Wort \"{{word}}\" ist eventuell falsch geschrieben. Wähle unten eine Korrektur:",
+    "recommended": "(empfohlen)",
+    "noSuggestions": "Keine Vorschläge verfügbar",
+    "useAnyway": "\"{{word}}\" trotzdem verwenden"
+  },
+  "explore": {
+    "subtitle": "Worterforschung",
+    "searchPrompt": "Suche ein Wort, um die Erkundung zu starten",
+    "formality": "Formalität",
+    "domains": "Verwendungsbereiche",
+    "usage": "Verwendungsmuster",
+    "mistakes": "Fehler",
+    "custom": "Eigener Kontext",
+    "practice": "Übungen",
+    "formalityCard": {
+      "title": "Formalanalyse generieren",
+      "description": "Erfahre, wie formell \"{{word}}\" ist und erhalte Alternativen für verschiedene Kontexte.",
+      "sectionTitle": "Formalanalyse",
+      "analyzing": "Formellere Ebenen werden analysiert...",
+      "informal": "Informell",
+      "neutral": "Neutral",
+      "formal": "Formell",
+      "formalityLevel": "Formalitätsgrad",
+      "yourSearch": "Ihre Suche",
+      "moreOptions": "Weitere Optionen"
+    },
+    "domainsCard": {
+      "title": "Domain-Beispiele generieren",
+      "description": "Sieh dir an, wie \"{{word}}\" in Business, Technik und Wissenschaft verwendet wird.",
+      "sectionTitle": "Domain-Beispiele",
+      "analyzing": "Verwendung nach Domänen wird analysiert...",
+      "collocations": "Häufige Kollokationen",
+      "examples": "Beispiele"
+    },
+    "usageCard": {
+      "title": "Verwendungsmuster generieren",
+      "description": "Lerne Grammatikmuster und Nutzungshinweise für \"{{word}}\".",
+      "sectionTitle": "Verwendungsmuster",
+      "analyzing": "Verwendungsmuster werden analysiert..."
+    },
+    "mistakesCard": {
+      "title": "Häufige Fehler generieren",
+      "description": "Finde typische Lernfehler bei \"{{word}}\" heraus und wie du sie vermeidest.",
+      "sectionTitle": "Häufige Fehler",
+      "analyzing": "Fehleranalyse läuft...",
+      "incorrect": "Falsch",
+      "correctUsage": "Korrekte Verwendung",
+      "noMistakes": "Keine häufigen Fehler gefunden."
+    },
+    "customCard": {
+      "placeholder": "Beispiel: E-Mail-Bewerbung für eine Softwareentwickler-Stelle schreiben",
+      "sectionTitle": "Individuelle Kontextbeispiele",
+      "analyzing": "Individuelle Beispiele werden erstellt...",
+      "contextLabel": "Kontext: {{context}}",
+      "generateNew": "Neue Beispiele generieren",
+      "inputLabel": "Beschreibe deinen Kontext:",
+      "placeholderAlt": "Beispiel: Ein formelles Geschäftsangebot verfassen",
+      "tryDifferent": "Einen anderen Kontext ausprobieren:"
+    },
+    "practiceCard": {
+      "title": "Übungsaufgaben generieren",
+      "description": "Teste dein Verständnis mit Multiple-Choice-Fragen.",
+      "sectionTitle": "Übungsaufgaben",
+      "analyzing": "Übungsaufgaben werden erstellt...",
+      "checkAnswers": "Antworten prüfen",
+      "explanation": "Erklärung:"
+    },
+    "title": "Entdecken",
+    "backToDefine": "Zurück zur Definition"
+  },
+  "history": {
+    "title": "Verlauf",
+    "description": "Verfolge deine Suchanfragen und Lernfortschritte",
+    "searchPlaceholder": "Verlauf durchsuchen",
+    "noMatches": "Keine Ergebnisse",
+    "noMatchesDesc": "Versuche einen anderen Suchbegriff oder lösche den Filter",
+    "empty": "Noch kein Suchverlauf",
+    "emptyDesc": "Beginne mit der Suche, um hier Einträge zu sehen",
+    "clear": "Alles löschen",
+    "clearConfirmTitle": "Gesamten Verlauf löschen?",
+    "clearConfirmDesc": "Dies entfernt dauerhaft deinen gesamten Suchverlauf. Dieser Vorgang kann nicht rückgängig gemacht werden.",
+    "successCleared": "Verlauf gelöscht",
+    "failedClear": "Verlauf konnte nicht gelöscht werden",
+    "itemDeleted": "Eintrag gelöscht",
+    "failedDelete": "Eintrag konnte nicht gelöscht werden",
+    "deleteItem": "Löschen",
+    "stats": {
+      "totalWords": "Wörter gesamt",
+      "unique": "Einzigartige",
+      "thisWeek": "Diese Woche",
+      "perDay": "Pro Tag"
+    },
+    "sections": {
+      "today": "Heute",
+      "yesterday": "Gestern",
+      "thisWeek": "Diese Woche",
+      "thisMonth": "Dieser Monat",
+      "older": "Älter"
+    },
+    "table": {
+      "word": "Wort",
+      "time": "Zeit",
+      "provider": "Anbieter"
+    }
+  },
+  "exportDialog": {
+    "title": "Wort exportieren",
+    "description": "Speichere das aktuelle Wort als Markdown oder sende es an deine Capacities-Tagesnotiz.",
+    "exportMarkdown": "Als Markdown exportieren",
+    "sendCapacities": "An Capacities senden",
+    "sending": "Senden…",
+    "configureFirst": "Capacities zuerst konfigurieren",
+    "capacitiesNote": "Richte Capacities in den Einstellungen ein, um das One-Klick-Sharing zu aktivieren",
+    "capacitiesSuccess": "\"{{word}}\" mit Capacities geteilt",
+    "export": "Exportieren",
+    "markdownSuccess": "In {{path}} gespeichert",
+    "saving": "Speichern..."
+  },
+  "wordHeader": {
+    "copiedToClipboard": "In Zwischenablage kopiert",
+    "failedToCopy": "Kopieren fehlgeschlagen",
+    "formality": "Formalität",
+    "origin": "Herkunft",
+    "usedIn": "Verwendet in",
+    "pronounceAriaLabel": "Wort aussprechen"
+  },
+  "errors": {
+    "cacheOperation": "Cache-Vorgang fehlgeschlagen",
+    "providerConfigurationRequired": "Anbieterkonfiguration erforderlich"
+  },
+  "phrase": {
+    "inANutshell": "Kurz gesagt",
+    "literalMeaning": "Wörtliche Bedeutung",
+    "actualMeaning": "Eigentliche Bedeutung",
+    "meaning": "Bedeutung",
+    "pronounce": "Aussprechen",
+    "originStory": "Ursprungsgeschichte",
+    "usageNotes": "Verwendungshinweise",
+    "commonMistakes": "Häufige Fehler",
+    "variations": "Variationen",
+    "similarMeaning": "Ähnliche Bedeutung",
+    "oppositeMeaning": "Gegenteilige Bedeutung",
+    "seeAlso": "Siehe auch",
+    "exportSuccess": "Exportiert nach {{path}}",
+    "exportNoData": "Keine Redewendungsdaten zum Exportieren",
+    "shareTitle": "Redewendung",
+    "copiedToClipboard": "In Zwischenablage kopiert",
+    "copyFailed": "Kopieren fehlgeschlagen",
+    "incorrect": "Falsch",
+    "correctUsage": "Korrekte Verwendung",
+    "regions": {
+      "universal": "Universal",
+      "american": "US",
+      "british": "UK",
+      "australian": "AU"
+    }
+  }
+}
