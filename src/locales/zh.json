@@ -183,16 +183,15 @@
     },
     "globalLookup": {
       "title": "全局查词",
-      "description": "全局快捷键即时查看单词释义",
+      "description": "从任意应用中查词",
       "enable": "启用全局查词",
-      "enableDesc": "使用快捷键从任意应用中查词",
+      "enableDesc": "通过Ctrl+右键点击从任意应用中查词",
       "enabled": "全局查词已启用",
       "disabled": "全局查词已禁用",
       "toggleFailed": "切换全局查词失败",
       "howToUse": "使用方法",
       "instruction": "将光标放在任意单词上",
-      "methodKeyboard": "按下",
-      "methodMouse": "按住<1>ALT</1>并右键点击",
+      "methodMouse": "按住<1>CTRL</1>并右键点击",
       "note": "适用于所有应用程序。MelliLex必须正在运行（可最小化到托盘）。"
     },
     "uiLanguage": {

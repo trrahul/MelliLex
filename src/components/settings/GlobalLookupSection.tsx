@@ -5,13 +5,11 @@ import { api } from '../../services/api';
 
 interface GlobalLookupSectionProps {
   enabled: boolean;
-  shortcut: string;
   onEnabledChange: (enabled: boolean) => void;
 }
 
 export const GlobalLookupSection = observer(({
   enabled,
-  shortcut,
   onEnabledChange,
 }: GlobalLookupSectionProps) => {
   const { t } = useTranslation();
@@ -19,10 +17,10 @@ export const GlobalLookupSection = observer(({
   const handleEnabledToggle = async (newEnabled: boolean) => {
     try {
       if (newEnabled) {
-        await api.registerGlobalLookupShortcut(shortcut);
+        await api.registerGlobalLookupShortcut('CTRL+ALT+D');
         toast.success(t('settings.globalLookup.enabled'));
       } else {
-        await api.unregisterGlobalLookupShortcut(shortcut);
+        await api.unregisterGlobalLookupShortcut('CTRL+ALT+D');
         toast.success(t('settings.globalLookup.disabled'));
       }
       onEnabledChange(newEnabled);
@@ -63,7 +61,6 @@ export const GlobalLookupSection = observer(({
         <div className="text-sm text-blue-900 dark:text-blue-100 leading-relaxed space-y-2">
           <p><span className="font-medium">{t('settings.globalLookup.instruction')}</span>, then:</p>
           <ul className="list-disc list-inside space-y-1 ml-1">
-            <li>{t('settings.globalLookup.methodKeyboard')} <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded font-mono text-xs">{shortcut}</code></li>
             <li>
               <Trans
                 i18nKey="settings.globalLookup.methodMouse"

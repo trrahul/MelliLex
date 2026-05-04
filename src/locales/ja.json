@@ -183,16 +183,15 @@
     },
     "globalLookup": {
       "title": "グローバル検索",
-      "description": "即座に単語定義を表示するグローバルショートカット",
+      "description": "どのアプリからでも単語を検索",
       "enable": "グローバル検索を有効にする",
-      "enableDesc": "ショートカットを使用してどのアプリからでも単語を検索",
+      "enableDesc": "Ctrl+右クリックでどのアプリからでも単語を検索",
       "enabled": "グローバル検索が有効になりました",
       "disabled": "グローバル検索が無効になりました",
       "toggleFailed": "グローバル検索の切り替えに失敗しました",
       "howToUse": "使い方",
       "instruction": "任意の単語にカーソルを置いて",
-      "methodKeyboard": "押す",
-      "methodMouse": "<1>ALT</1>を押しながら右クリック",
+      "methodMouse": "<1>CTRL</1>を押しながら右クリック",
       "note": "すべてのアプリで動作します。MelliLexが実行中である必要があります（トレイに最小化可）。"
     },
     "uiLanguage": {

@@ -183,16 +183,15 @@
     },
     "globalLookup": {
       "title": "Recherche globale",
-      "description": "Raccourci global pour les définitions instantanées",
+      "description": "Rechercher des mots depuis n'importe quelle application",
       "enable": "Activer la recherche globale",
-      "enableDesc": "Rechercher des mots depuis n'importe quelle app avec des raccourcis",
+      "enableDesc": "Rechercher des mots depuis n'importe quelle app avec Ctrl+clic droit",
       "enabled": "Recherche globale activée",
       "disabled": "Recherche globale désactivée",
       "toggleFailed": "Échec du basculement de la recherche globale",
       "howToUse": "Comment utiliser",
       "instruction": "Placez votre curseur sur un mot",
-      "methodKeyboard": "Appuyez sur",
-      "methodMouse": "Maintenez <1>ALT</1> et cliquez droit",
+      "methodMouse": "Maintenez <1>CTRL</1> et cliquez droit",
       "note": "Fonctionne dans toutes les applications. MelliLex doit être en cours d'exécution (peut être dans la barre système)."
     },
     "uiLanguage": {

@@ -183,16 +183,15 @@
     },
     "globalLookup": {
       "title": "Genel Arama",
-      "description": "Anlık kelime tanımları için genel kısayol",
+      "description": "Herhangi bir uygulamadan kelime ara",
       "enable": "Genel aramayı etkinleştir",
-      "enableDesc": "Kısayolları kullanarak herhangi bir uygulamadan kelime ara",
+      "enableDesc": "Ctrl+sağ tıklama ile herhangi bir uygulamadan kelime ara",
       "enabled": "Genel arama etkinleştirildi",
       "disabled": "Genel arama devre dışı bırakıldı",
       "toggleFailed": "Genel arama değiştirilemedi",
       "howToUse": "Nasıl kullanılır",
       "instruction": "İmleci herhangi bir kelimenin üzerine getirin",
-      "methodKeyboard": "Basın",
-      "methodMouse": "<1>ALT</1> tuşuna basılı tutun ve sağ tıklayın",
+      "methodMouse": "<1>CTRL</1> tuşuna basılı tutun ve sağ tıklayın",
       "note": "Tüm uygulamalarda çalışır. MelliLex çalışır durumda olmalıdır (tepside olabilir)."
     },
     "uiLanguage": {

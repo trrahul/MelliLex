@@ -100,7 +100,6 @@ export const Settings = observer(() => {
   const [applyingLanguages, setApplyingLanguages] = useState(false);
 
   const [globalLookupEnabled, setGlobalLookupEnabled] = useState(true);
-  const [globalLookupShortcut, setGlobalLookupShortcut] = useState('CTRL+ALT+D');
 
   useEffect(() => {
     settingsStore.loadSettings();
@@ -111,12 +110,10 @@ export const Settings = observer(() => {
     setSelectedUILanguage(settingsStore.settings.uiLanguage || 'English');
     setSelectedExplanationLanguage(settingsStore.settings.explanationLanguage || 'English');
     setGlobalLookupEnabled(settingsStore.settings.enableGlobalLookup ?? true);
-    setGlobalLookupShortcut(settingsStore.settings.globalLookupShortcut || 'CTRL+ALT+D');
   }, [
     settingsStore.settings.uiLanguage,
     settingsStore.settings.explanationLanguage,
-    settingsStore.settings.enableGlobalLookup,
-    settingsStore.settings.globalLookupShortcut
+    settingsStore.settings.enableGlobalLookup
   ]);
 
   useEffect(() => {
@@ -267,7 +264,6 @@ export const Settings = observer(() => {
                 {section.id === 'global-lookup' && (
                   <GlobalLookupSection
                     enabled={globalLookupEnabled}
-                    shortcut={globalLookupShortcut}
                     onEnabledChange={handleGlobalLookupEnabledChange}
                   />
                 )}

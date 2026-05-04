@@ -183,16 +183,15 @@
     },
     "globalLookup": {
       "title": "Globale Suche",
-      "description": "Globaler Shortcut für sofortige Wortdefinitionen",
+      "description": "Wörter aus jeder Anwendung nachschlagen",
       "enable": "Globale Suche aktivieren",
-      "enableDesc": "Wörter aus jeder App mit Shortcuts nachschlagen",
+      "enableDesc": "Wörter aus jeder App per Strg+Rechtsklick nachschlagen",
       "enabled": "Globale Suche aktiviert",
       "disabled": "Globale Suche deaktiviert",
       "toggleFailed": "Fehler beim Umschalten der globalen Suche",
       "howToUse": "Anleitung",
       "instruction": "Platziere den Cursor auf ein Wort",
-      "methodKeyboard": "Drücke",
-      "methodMouse": "Halte <1>ALT</1> gedrückt und klicke rechts",
+      "methodMouse": "Halte <1>CTRL</1> gedrückt und klicke rechts",
       "note": "Funktioniert in allen Anwendungen. MelliLex muss laufen (kann im Tray sein)."
     },
     "uiLanguage": {

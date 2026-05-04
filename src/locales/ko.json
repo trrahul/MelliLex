@@ -183,16 +183,15 @@
     },
     "globalLookup": {
       "title": "전역 검색",
-      "description": "즉시 단어 정의를 위한 전역 단축키",
+      "description": "모든 앱에서 단어 검색",
       "enable": "전역 검색 활성화",
-      "enableDesc": "단축키를 사용하여 모든 앱에서 단어 검색",
+      "enableDesc": "Ctrl+오른쪽 클릭으로 모든 앱에서 단어 검색",
       "enabled": "전역 검색이 활성화되었습니다",
       "disabled": "전역 검색이 비활성화되었습니다",
       "toggleFailed": "전역 검색 전환 실패",
       "howToUse": "사용 방법",
       "instruction": "단어 위에 커서를 놓으세요",
-      "methodKeyboard": "누르세요",
-      "methodMouse": "<1>ALT</1>를 누른 채 오른쪽 클릭",
+      "methodMouse": "<1>CTRL</1>를 누른 채 오른쪽 클릭",
       "note": "모든 애플리케이션에서 작동합니다. MelliLex가 실행 중이어야 합니다(트레이에 최소화 가능)."
     },
     "uiLanguage": {

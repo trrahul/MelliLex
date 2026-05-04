@@ -186,16 +186,15 @@
     },
     "globalLookup": {
       "title": "Global Lookup",
-      "description": "Global shortcut for instant word definitions",
+      "description": "Look up words from any application",
       "enable": "Enable Global Lookup",
-      "enableDesc": "Look up words from any app using shortcuts",
+      "enableDesc": "Look up words from any app using Ctrl+Right-click",
       "enabled": "Global lookup enabled",
       "disabled": "Global lookup disabled",
       "toggleFailed": "Failed to toggle global lookup",
       "howToUse": "How to Use",
       "instruction": "Place your cursor on any word",
-      "methodKeyboard": "Press",
-      "methodMouse": "Hold <1>ALT</1> and right-click",
+      "methodMouse": "Hold <1>CTRL</1> and right-click",
       "note": "Works across all applications. MelliLex must be running (can be in tray)."
     }
   },
