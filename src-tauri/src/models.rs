@@ -290,18 +290,12 @@ pub struct AppSettings {
     pub ui_language: Option<String>,
     #[serde(default = "default_enable_global_lookup")]
     pub enable_global_lookup: bool,
-    #[serde(default = "default_global_lookup_shortcut")]
-    pub global_lookup_shortcut: String,
     #[serde(default = "default_typography_mode")]
     pub typography_mode: String,
 }
 
 fn default_enable_global_lookup() -> bool {
     true
-}
-
-fn default_global_lookup_shortcut() -> String {
-    "CTRL+ALT+D".to_string()
 }
 
 fn default_typography_mode() -> String {

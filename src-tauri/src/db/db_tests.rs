@@ -69,7 +69,6 @@ fn sample_settings_payload() -> AppSettings {
         explanation_language: Some("English".to_string()),
         ui_language: Some("en-US".to_string()),
         enable_global_lookup: true,
-        global_lookup_shortcut: "CTRL+ALT+D".to_string(),
         typography_mode: "classic".to_string(),
     }
 }

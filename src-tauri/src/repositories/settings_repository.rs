@@ -43,7 +43,6 @@ impl SettingsRepository {
                 explanation_language: Some("English".to_string()),
                 ui_language: None, // Will be auto-detected on frontend first run
                 enable_global_lookup: true,
-                global_lookup_shortcut: "CTRL+ALT+D".to_string(),
                 typography_mode: "classic".to_string(),
             }),
             Err(e) => Err(AppError::from(e)),

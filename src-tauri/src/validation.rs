@@ -83,35 +83,6 @@ pub fn validate_markdown(markdown: &str) -> Result<&str, AppError> {
     Ok(markdown)
 }
 
-pub fn validate_shortcut(shortcut: &str) -> Result<String, AppError> {
-    let trimmed = shortcut.trim().to_uppercase();
-
-    if trimmed.is_empty() {
-        return Err(AppError::validation("Shortcut cannot be empty"));
-    }
-
-    if !trimmed.contains('+') {
-        return Err(AppError::validation(
-            "Shortcut must contain at least one modifier key (e.g., CTRL+ALT+D)",
-        ));
-    }
-
-    let parts: Vec<&str> = trimmed.split('+').collect();
-    if parts.len() < 2 {
-        return Err(AppError::validation(
-            "Shortcut must have modifier + key (e.g., CTRL+D)",
-        ));
-    }
-
-    if parts.iter().any(|p| p.is_empty()) {
-        return Err(AppError::validation(
-            "Shortcut contains empty parts (check for double +)",
-        ));
-    }
-
-    Ok(trimmed)
-}
-
 pub fn validate_api_token(token: &str) -> Result<&str, AppError> {
     let trimmed = token.trim();
 
@@ -172,19 +143,6 @@ mod tests {
         assert_eq!(validate_exercise_count(5).unwrap(), 5);
         assert!(validate_exercise_count(0).is_err());
         assert!(validate_exercise_count(MAX_PRACTICE_EXERCISES + 1).is_err());
-    }
-
-    #[test]
-    fn test_validate_shortcut_success() {
-        assert_eq!(validate_shortcut("ctrl+alt+d").unwrap(), "CTRL+ALT+D");
-        assert_eq!(validate_shortcut("  CMD+SHIFT+L  ").unwrap(), "CMD+SHIFT+L");
-    }
-
-    #[test]
-    fn test_validate_shortcut_failures() {
-        assert!(validate_shortcut("").is_err());
-        assert!(validate_shortcut("D").is_err());
-        assert!(validate_shortcut("CTRL++D").is_err());
     }
 
     #[test]

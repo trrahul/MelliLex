@@ -61,7 +61,6 @@ describe('ExportWordDialog', () => {
           aiProvider: 'openai',
           theme: 'light',
           enableGlobalLookup: false,
-          globalLookupShortcut: 'CTRL+ALT+D',
           exportSettings: {
             capacities: {
               apiToken: 'token',
@@ -103,7 +102,6 @@ describe('ExportWordDialog', () => {
           aiProvider: 'openai',
           theme: 'light',
           enableGlobalLookup: false,
-          globalLookupShortcut: 'CTRL+ALT+D',
           exportSettings: {},
         },
       },
@@ -141,7 +139,6 @@ describe('ExportWordDialog', () => {
           aiProvider: 'openai',
           theme: 'light',
           enableGlobalLookup: false,
-          globalLookupShortcut: 'CTRL+ALT+D',
           exportSettings: {
             includeExploration: true,
             capacities: {

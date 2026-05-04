@@ -63,7 +63,6 @@ export function createMockRootStore(overrides: Record<string, unknown> = {}): Ro
       aiProvider: 'openai',
       theme: 'light',
       enableGlobalLookup: false,
-      globalLookupShortcut: 'CTRL+ALT+D',
       exportSettings: {},
     },
     ...overrides.settingsStore as object,

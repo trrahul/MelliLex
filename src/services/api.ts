@@ -210,16 +210,16 @@ export const api = {
   },
 
   // Global Lookup
-  async registerGlobalLookupShortcut(shortcut: string): Promise<void> {
-    logger.info(`[API] Registering global lookup shortcut: ${shortcut}`);
-    await wrapInvoke('register_global_lookup_shortcut', { shortcut });
-    logger.info(`[API] Global lookup shortcut registered`);
+  async enableGlobalLookup(): Promise<void> {
+    logger.info('[API] Enabling global lookup');
+    await wrapInvoke('enable_global_lookup');
+    logger.info('[API] Global lookup enabled');
   },
 
-  async unregisterGlobalLookupShortcut(shortcut: string): Promise<void> {
-    logger.info(`[API] Unregistering global lookup shortcut: ${shortcut}`);
-    await wrapInvoke('unregister_global_lookup_shortcut', { shortcut });
-    logger.info(`[API] Global lookup shortcut unregistered`);
+  async disableGlobalLookup(): Promise<void> {
+    logger.info('[API] Disabling global lookup');
+    await wrapInvoke('disable_global_lookup');
+    logger.info('[API] Global lookup disabled');
   },
 
   // Updates

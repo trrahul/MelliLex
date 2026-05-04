@@ -46,11 +46,11 @@ pub fn init(app: AppHandle, db: &Database) -> tauri::Result<()> {
 }
 
 /// Stops the mouse hook.
-pub fn unregister_shortcut(app: AppHandle, _shortcut: &str) -> tauri::Result<()> {
+pub fn disable(app: AppHandle) -> tauri::Result<()> {
     shortcut_manager::stop_mouse_hook(app)
 }
 
 /// Starts the mouse hook.
-pub fn register_shortcut(app: AppHandle, _shortcut: &str) -> tauri::Result<()> {
+pub fn enable(app: AppHandle) -> tauri::Result<()> {
     shortcut_manager::start_mouse_hook(app)
 }

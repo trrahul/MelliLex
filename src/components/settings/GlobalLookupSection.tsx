@@ -17,10 +17,10 @@ export const GlobalLookupSection = observer(({
   const handleEnabledToggle = async (newEnabled: boolean) => {
     try {
       if (newEnabled) {
-        await api.registerGlobalLookupShortcut('CTRL+ALT+D');
+        await api.enableGlobalLookup();
         toast.success(t('settings.globalLookup.enabled'));
       } else {
-        await api.unregisterGlobalLookupShortcut('CTRL+ALT+D');
+        await api.disableGlobalLookup();
         toast.success(t('settings.globalLookup.disabled'));
       }
       onEnabledChange(newEnabled);

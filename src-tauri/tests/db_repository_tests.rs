@@ -208,7 +208,6 @@ fn test_settings_persistence() {
         explanation_language: Some("Spanish".to_string()),
         ui_language: None,
         enable_global_lookup: false,
-        global_lookup_shortcut: "CmdOrCtrl+Shift+D".to_string(),
         typography_mode: "modern".to_string(),
     };
 
@@ -220,10 +219,7 @@ fn test_settings_persistence() {
     let loaded = db.get_settings().expect("Failed to get settings");
     assert_eq!(loaded.ai_provider, "openai");
     assert_eq!(loaded.explanation_language, Some("Spanish".to_string()));
-    assert_eq!(
-        loaded.global_lookup_shortcut,
-        "CmdOrCtrl+Shift+D".to_string()
-    );
+    assert!(!loaded.enable_global_lookup);
 
     // Verify provider config is loaded
     assert!(loaded.open_ai_config.is_some());

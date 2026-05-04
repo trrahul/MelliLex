@@ -100,7 +100,6 @@ pub fn run() {
         )
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_process::init())
-        .plugin(tauri_plugin_global_shortcut::Builder::new().build())
         .on_window_event(window_controls::handle_window_event)
         .plugin(tauri_plugin_opener::init())
         .plugin(logging::build_plugin())
@@ -254,8 +253,8 @@ pub fn run() {
             export_phrase_markdown_file,
             export_to_capacities,
             // Global lookup commands
-            register_global_lookup_shortcut,
-            unregister_global_lookup_shortcut,
+            enable_global_lookup,
+            disable_global_lookup,
             // System commands
             is_store_version,
             check_for_app_updates,

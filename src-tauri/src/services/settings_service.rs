@@ -87,7 +87,6 @@ mod tests {
             explanation_language: Some("English".into()),
             ui_language: None,
             enable_global_lookup: true,
-            global_lookup_shortcut: "CTRL+ALT+D".into(),
             typography_mode: "classic".into(),
         }
     }

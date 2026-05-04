@@ -79,8 +79,7 @@ export interface AppSettings {
   exportSettings?: ExportSettings;
   explanationLanguage?: string; // Language for word explanations (default: "English")
   uiLanguage?: string; // Language for UI interface (default: auto-detected)
-  enableGlobalLookup: boolean; // Enable global lookup shortcut feature
-  globalLookupShortcut: string; // Global shortcut for lookup (default: "CTRL+ALT+D")
+  enableGlobalLookup: boolean; // Enable global lookup feature
   typographyMode?: TypographyOption; // Preferred typography pairing
 }
 

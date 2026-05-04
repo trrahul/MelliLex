@@ -27,7 +27,6 @@ export class SettingsStore {
     theme: 'system',
     exportSettings: createDefaultExportSettings(),
     enableGlobalLookup: true,
-    globalLookupShortcut: 'CTRL+ALT+D',
     typographyMode: DEFAULT_TYPOGRAPHY_OPTION,
   };
   loading: boolean = false;
