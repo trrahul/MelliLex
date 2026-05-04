@@ -52,9 +52,10 @@ impl CaptureManager {
         let telemetry = CaptureTelemetry::new(&self.telemetry);
 
         log::info!(
-            "[CaptureManager] Starting capture with {} strategies, prefer_ocr={}",
+            "[CaptureManager] Starting capture with {} strategies, prefer_ocr={}, timeout={}ms",
             strategies.len(),
-            policy.prefer_ocr
+            policy.prefer_ocr,
+            policy.timeout.as_millis()
         );
         for (i, s) in strategies.iter().enumerate() {
             log::info!("[CaptureManager] Strategy {}: {} (ocr={})", i, s.name(), s.provides_ocr());
@@ -84,6 +85,12 @@ impl CaptureManager {
                     last_error = Some(err);
                 }
                 Err(_) => {
+                    log::warn!(
+                        "[CaptureManager] Strategy '{}' async timeout after {}ms (limit={}ms) — blocking thread may still be running",
+                        strategy.name(),
+                        start.elapsed().as_millis(),
+                        policy.timeout.as_millis()
+                    );
                     telemetry.timeout(strategy.name(), start.elapsed(), policy.timeout);
                     last_error = Some(CaptureError::Timeout);
                 }
@@ -117,10 +124,7 @@ impl CaptureManagerBuilder {
     pub fn with_default_strategies(self) -> Self {
         #[cfg(windows)]
         {
-            use crate::strategy::clipboard::ClipboardCaptureStrategy;
-
-            let builder = self.with_strategy(Arc::new(UiaCaptureStrategy::new()));
-            builder.with_strategy(Arc::new(ClipboardCaptureStrategy::new()))
+            self.with_strategy(Arc::new(UiaCaptureStrategy::new()))
         }
         #[cfg(not(windows))]
         {

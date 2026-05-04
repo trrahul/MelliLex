@@ -28,8 +28,6 @@ pub trait CaptureStrategy: Send + Sync {
 }
 
 #[cfg(windows)]
-pub mod clipboard;
-#[cfg(windows)]
 pub mod ocr;
 #[cfg(windows)]
 pub mod uia;

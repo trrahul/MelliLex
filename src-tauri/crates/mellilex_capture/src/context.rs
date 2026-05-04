@@ -60,7 +60,6 @@ pub enum CaptureSource {
     UiaControl,
     MsaaAccessible,
     SelectionApi,
-    Clipboard,
     Ocr,
     Unknown,
 }
