@@ -4,22 +4,22 @@
 
 MelliLex is a Windows desktop app that lets you instantly look up meanings, usage, formality, and vocabulary context for any word or phrase — powered by the AI provider of your choice.
 
-![MelliLex](img/screenshot1.png){height=800}
-![MelliLex](img/screenshot2.png){height=800}
+<img src="img/screenshot1.png" height="800" alt="MelliLex">
+<img src="img/screenshot2.png" height="800" alt="MelliLex">
 
 ## Features
 
 
 
-- **Instant lookup** via global keyboard shortcut or clipboard capture
-![Instant lookup](img/global-lookup.png){height=400}
+- **Instant lookup** via Ctrl+Right-click on any word
+<img src="img/global-lookup.png" height="400" alt="Instant lookup">
 - **Explore mode**: practice exercises, common mistakes, formality analysis, domain exploration
-![Practice](img/practice.png){height=400}
-![Domains](img/domains.png){height=400}
-![Mistakes](img/mistakes.png){height=400}
+<img src="img/practice.png" height="400" alt="Practice">
+<img src="img/domains.png" height="400" alt="Domains">
+<img src="img/mistakes.png" height="400" alt="Mistakes">
 
 
-- **OCR capture** — select text from anywhere on screen, even non-selectable UI. Works with Kindle Windows app.
+- **OCR capture** — automatically used for non-selectable UI. Works with Kindle, Adobe Acrobat, Foxit, SumatraPDF, and Kindle Cloud Reader in the browser.
 - **Phrase support**: full phrase definitions, context, and examples
 - **Spell check**: SymSpell-powered corrections before lookup
 - **Search history**: revisit previous lookups
