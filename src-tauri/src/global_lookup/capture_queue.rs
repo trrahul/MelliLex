@@ -78,15 +78,15 @@ fn spawn_capture_task(app_handle: AppHandle) {
         // Capture cursor position and detect Kindle BEFORE showing the window
         #[cfg(windows)]
         let (use_ocr, cursor_pos) = {
-            let is_kindle = windows_monitor::is_kindle_under_cursor();
+            let is_ocr_app = windows_monitor::should_prefer_ocr();
             let cursor = get_cursor_position();
-            (is_kindle, cursor)
+            (is_ocr_app, cursor)
         };
         #[cfg(not(windows))]
         let (use_ocr, cursor_pos): (bool, Option<mellilex_capture::ScreenPoint>) = (false, None);
 
         if use_ocr {
-            log::info!("[GlobalLookup] Kindle detected under cursor; preferring OCR");
+            log::info!("[GlobalLookup] OCR-preferred application detected under cursor; preferring OCR");
         }
         if let Some(ref pos) = cursor_pos {
             log::info!("[GlobalLookup] Captured cursor position: ({}, {})", pos.x, pos.y);
@@ -112,6 +112,7 @@ fn spawn_capture_task(app_handle: AppHandle) {
         let mut request = CaptureRequest::default();
         if use_ocr {
             request.prefer_ocr = true;
+            request.timeout = std::time::Duration::from_millis(5000);
         }
         request.cursor = cursor_pos;
 
