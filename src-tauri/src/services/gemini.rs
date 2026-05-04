@@ -15,9 +15,10 @@ use crate::services::provider_http::{ensure_success, log_status_if_error};
 const KNOWN_GEMINI_MODELS: &[(&str, &str)] = &[
     ("gemini-2.5-flash-lite", "Gemini 2.5 Flash Lite"),
     ("gemini-2.5-flash", "Gemini 2.5 Flash"),
+    ("gemini-3.1-flash-lite-preview", "Gemini 3.1 Flash Lite (Preview)"),
     ("gemini-3-flash", "Gemini 3 Flash"),
     ("gemini-2.5-pro", "Gemini 2.5 Pro"),
-    ("gemini-3-pro", "Gemini 3 Pro"),
+    ("gemini-3.1-pro-preview", "Gemini 3.1 Pro (Preview)"),
     ("gemini-2.0-flash", "Gemini 2.0 Flash (Deprecated)"),
     ("gemini-2.0-flash-lite", "Gemini 2.0 Flash Lite (Deprecated)"),
 ];
@@ -126,7 +127,7 @@ impl GeminiService {
 
         let client = RetriableClient::default();
         let url = format!(
-            "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={}",
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key={}",
             api_key
         );
 
@@ -318,10 +319,10 @@ mod tests {
 
     #[test]
     fn gemini_api_url_format() {
-        let service = GeminiService::new("test-key".to_string(), "gemini-1.5-flash".to_string());
+        let service = GeminiService::new("test-key".to_string(), "gemini-2.5-flash-lite".to_string());
         let url = service.get_api_url();
         assert!(url.contains("generativelanguage.googleapis.com"));
-        assert!(url.contains("gemini-1.5-flash"));
+        assert!(url.contains("gemini-2.5-flash-lite"));
         assert!(url.contains("generateContent"));
     }
 

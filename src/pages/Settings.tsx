@@ -130,7 +130,7 @@ export const Settings = observer(() => {
     if (provider === 'openai' && settingsStore.settings.openAiConfig) {
       savedKey = settingsStore.settings.openAiConfig.apiKey || '';
       setApiKey(savedKey);
-      setModelId(settingsStore.settings.openAiConfig.model || 'gpt-4o-mini');
+      setModelId(settingsStore.settings.openAiConfig.model || 'gpt-5-mini');
     } else if (provider === 'anthropic' && settingsStore.settings.anthropicConfig) {
       savedKey = settingsStore.settings.anthropicConfig.apiKey || '';
       setApiKey(savedKey);
@@ -138,7 +138,7 @@ export const Settings = observer(() => {
     } else if (provider === 'gemini' && settingsStore.settings.geminiConfig) {
       savedKey = settingsStore.settings.geminiConfig.apiKey || '';
       setApiKey(savedKey);
-      setModelId(settingsStore.settings.geminiConfig.model || 'gemini-1.5-flash');
+      setModelId(settingsStore.settings.geminiConfig.model || 'gemini-2.5-flash-lite');
     } else if (provider === 'ollama') {
       setApiKey('');
       if (settingsStore.settings.ollamaConfig?.model) {

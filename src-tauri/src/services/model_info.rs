@@ -5,12 +5,13 @@ use crate::services::ai_provider::AiModel;
 /// IDs double as prefixes — versioned API IDs like "gpt-5-2025-12-11"
 /// match "gpt-5" via longest-prefix lookup.
 const KNOWN_MODELS: &[(&str, &str)] = &[
-    ("gpt-5-nano", "GPT-5 Nano"),
     ("gpt-5-mini", "GPT-5 Mini"),
     ("gpt-5", "GPT-5"),
     ("gpt-5.1", "GPT-5.1"),
     ("gpt-5.2", "GPT-5.2"),
     ("gpt-5.2-pro", "GPT-5.2 Pro"),
+    ("gpt-5.3", "GPT-5.3"),
+    ("gpt-5.4", "GPT-5.4"),
 ];
 
 const SPECIALIZED_KEYWORDS: &[&str] = &[

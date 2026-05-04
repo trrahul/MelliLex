@@ -14,7 +14,7 @@ import {
 import { Check, Loader2, X, Zap } from 'lucide-react';
 
 const RECOMMENDED_MODEL_IDS = new Set([
-  'gpt-5-nano',         // OpenAI fastest
+  'gpt-5-mini',         // OpenAI fastest
   'claude-haiku-4-5-20251001', // Anthropic fastest
   'gemini-2.5-flash-lite',     // Gemini fastest
 ]);
@@ -108,7 +108,7 @@ export const AIProviderSection = observer(({
     const settings = settingsStore.settings;
     if (provider === 'openai' && settings.openAiConfig) {
       setApiKey(settings.openAiConfig.apiKey || '');
-      setModelId(settings.openAiConfig.model || 'gpt-4o-mini');
+      setModelId(settings.openAiConfig.model || 'gpt-5-mini');
     } else if (provider === 'anthropic' && settings.anthropicConfig) {
       setApiKey(settings.anthropicConfig.apiKey || '');
       setModelId(settings.anthropicConfig.model || 'claude-haiku-4-5-20251001');
@@ -150,7 +150,7 @@ export const AIProviderSection = observer(({
 
   const getDefaultModel = (provider: AiProviderType): string => {
     switch (provider) {
-      case 'openai': return 'gpt-5-nano';
+      case 'openai': return 'gpt-5-mini';
       case 'anthropic': return 'claude-haiku-4-5-20251001';
       case 'gemini': return 'gemini-2.5-flash-lite';
       default: return '';
