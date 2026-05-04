@@ -8,7 +8,7 @@ use crate::constants::headers;
 use crate::models::TokenUsage;
 use crate::services::ai_provider::{AiModel, PromptSender};
 use crate::services::http_client::{RetriableClient, RetryIntent};
-use crate::services::provider_http::{ensure_success, log_status_if_error};
+use crate::services::provider_http::ensure_success;
 
 pub struct AnthropicService {
     api_key: String,
@@ -48,30 +48,16 @@ impl AnthropicService {
         debug!("Testing Anthropic API key");
 
         let client = RetriableClient::default();
-        let test_body = serde_json::json!({
-            "model": "claude-3-haiku-20240307",
-            "max_tokens": 10,
-            "messages": [{
-                "role": "user",
-                "content": [{
-                    "type": "text",
-                    "text": "test"
-                }]
-            }]
-        });
 
         let response = client
             .send_with_retry("anthropic.validate_key", RetryIntent::Idempotent, |http| {
                 let api_key = api_key.to_string();
-                let test_body = test_body.clone();
                 let client = http.clone();
                 async move {
                     client
-                        .post(anthropic_api::MESSAGES)
+                        .get(anthropic_api::MODELS)
                         .header(headers::X_API_KEY, api_key)
                         .header(headers::ANTHROPIC_VERSION, anthropic_api::VERSION)
-                        .header(headers::CONTENT_TYPE, "application/json")
-                        .json(&test_body)
                         .send()
                         .await
                 }
@@ -79,8 +65,11 @@ impl AnthropicService {
             .await?;
 
         let status = response.status();
-        log_status_if_error("Anthropic API key", status);
         let is_valid = status.is_success();
+        if !is_valid {
+            let body = response.text().await.unwrap_or_default();
+            log::error!("Anthropic API key error: status {}, body: {}", status, body);
+        }
         debug!("Anthropic API key test result: {}", is_valid);
         Ok(is_valid)
     }

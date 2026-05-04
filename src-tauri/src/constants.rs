@@ -22,6 +22,7 @@ pub mod api {
 
     pub mod anthropic {
         pub const MESSAGES: &str = "https://api.anthropic.com/v1/messages";
+        pub const MODELS: &str = "https://api.anthropic.com/v1/models";
         pub const VERSION: &str = "2023-06-01";
     }
 }
