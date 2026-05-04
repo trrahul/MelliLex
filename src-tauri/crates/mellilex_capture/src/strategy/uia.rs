@@ -101,30 +101,42 @@ impl UiaCaptureStrategy {
             .element_from_point(cursor_pos)
             .map_err(|e| anyhow!("No element at cursor: {:?}", e))?;
 
+        let element_class = element.get_classname().unwrap_or_default();
+        let element_control_type = element.get_control_type().ok();
         let mut element_name = String::new();
         if let Ok(name) = element.get_name() {
             capture_debug!("[UIA] Element name: '{}'", name);
             element_name = name;
         }
-        // Note: element.get_value() doesn't exist in uiautomation crate
-        // Use ValuePattern instead (tried later)
-        if let Ok(control_type) = element.get_control_type() {
-            capture_debug!("[UIA] Control type: {:?}", control_type);
-        }
-        if let Ok(class) = element.get_classname() {
-            capture_debug!("[UIA] Class name: '{}'", class);
-        }
+        capture_info!(
+            "[UIA] Element at cursor: class='{}', control_type={:?}",
+            element_class,
+            element_control_type
+        );
 
-        if let Some(word) = self.try_text_pattern_capture(&walker, &element, cursor_pos)? {
-            capture_info!("[UIA] Captured from TextPattern: '{}'", word);
-            return Ok(Some(CaptureResult::new(word, CaptureSource::UiaControl)));
+        capture_info!("[UIA] Searching for TextPattern in element tree");
+        match self.try_text_pattern_capture(&walker, &element, cursor_pos) {
+            Ok(Some(word)) => {
+                capture_debug!("[UIA] Captured from TextPattern: '{}'", word);
+                return Ok(Some(CaptureResult::new(word, CaptureSource::UiaControl)));
+            }
+            Ok(None) => {
+                capture_info!("[UIA] TextPattern search yielded no text (element may not support IUIAutomationTextPattern)");
+            }
+            Err(ref e) => {
+                capture_info!("[UIA] TextPattern search failed: {:?}", e);
+            }
         }
 
         if !element_name.is_empty() && !element_name.trim().is_empty() {
             let full_text = element_name.trim();
             // Extract single word from the text (split on whitespace/punctuation)
             if let Some(word) = Self::extract_single_word(full_text) {
-                capture_info!(
+                log::warn!(
+                    "[UIA] Falling back to element.Name — this is the control label, not selected text. class='{}'",
+                    element_class
+                );
+                capture_debug!(
                     "[UIA] Captured word from element.Name: '{}' (full text: '{}')",
                     word,
                     full_text
@@ -167,15 +179,44 @@ impl UiaCaptureStrategy {
             .map_err(|e| anyhow!("Failed to get range from point: {:?}", e))?;
         let character_range = Self::normalize_to_character_range(&raw_range)?;
 
-        let mut chosen_word: Option<String> = None;
-        let mut attempt_index = 0;
-
         let baseline_geometry = Self::range_geometry(&character_range, cursor_pos)?;
         capture_debug!(
             "[UIA] baseline geometry: rects={}, contains_cursor={}",
             baseline_geometry.rects.len(),
             baseline_geometry.contains_cursor
         );
+
+        // Check if RangeFromPoint returned a range that actually contains the cursor.
+        // Chromium-based browsers often return a range at the start of the text block
+        // instead of at the cursor position.
+        let range_from_point_reliable =
+            baseline_geometry.contains_cursor || baseline_geometry.rects.is_empty();
+
+        if range_from_point_reliable {
+            let chosen_word =
+                self.run_extractors(&character_range, cursor_pos, &baseline_geometry)?;
+            if chosen_word.is_some() {
+                return Ok(chosen_word);
+            }
+        } else {
+            capture_info!(
+                "[UIA] RangeFromPoint appears inaccurate (cursor not in baseline rects), skipping to word walk"
+            );
+        }
+
+        // Fallback: walk word-by-word through the document to find the word at cursor
+        self.try_word_walk(&text_pattern, cursor_pos)
+    }
+
+    /// Run the standard word extractors on a character range.
+    fn run_extractors(
+        &self,
+        character_range: &UITextRange,
+        cursor_pos: Point,
+        baseline_geometry: &RangeGeometry,
+    ) -> Result<Option<String>> {
+        let mut chosen_word: Option<String> = None;
+        let mut attempt_index = 0;
 
         for extractor in self.word_extractors() {
             attempt_index += 1;
@@ -186,7 +227,7 @@ impl UiaCaptureStrategy {
                 extractor.name()
             );
 
-            match extractor.extract(self, &range_instance, cursor_pos, &baseline_geometry) {
+            match extractor.extract(self, &range_instance, cursor_pos, baseline_geometry) {
                 Ok(Some(word)) => {
                     capture_debug!(
                         "[UIA] extractor[{}] '{}' succeeded with '{}'",
@@ -226,6 +267,76 @@ impl UiaCaptureStrategy {
         Ok(chosen_word)
     }
 
+    /// Fallback when RangeFromPoint is inaccurate (common in Chromium-based browsers).
+    /// Walks word-by-word through the document range, checking each word's bounding
+    /// rectangle against the cursor position.
+    fn try_word_walk(
+        &self,
+        text_pattern: &UITextPattern,
+        cursor_pos: Point,
+    ) -> Result<Option<String>> {
+        let doc_range = text_pattern
+            .get_document_range()
+            .map_err(|e| anyhow!("Failed to get document range: {:?}", e))?;
+
+        let probe = doc_range.clone();
+        // Collapse to start of document
+        probe
+            .move_text(TextUnit::Character, -999_999)
+            .map_err(|e| anyhow!("Failed to collapse range to start: {:?}", e))?;
+
+        const MAX_WORDS: usize = 200;
+        let cursor_y = cursor_pos.get_y() as f64;
+
+        for word_idx in 0..MAX_WORDS {
+            let word_range = probe.clone();
+            if word_range
+                .expand_to_enclosing_unit(TextUnit::Word)
+                .is_err()
+            {
+                break;
+            }
+
+            let geo = Self::range_geometry(&word_range, cursor_pos)?;
+
+            if geo.contains_cursor {
+                if let Some(text) = Self::extract_word_from_range(&word_range)? {
+                    if !text.is_empty() {
+                        capture_info!(
+                            "[UIA] Word walk found word at cursor (position {})",
+                            word_idx + 1
+                        );
+                        capture_debug!("[UIA] Word walk result: '{}'", text);
+                        return Ok(Some(text));
+                    }
+                }
+            }
+
+            // Early exit: if all rects are clearly below the cursor, stop
+            if !geo.rects.is_empty() {
+                let min_top = geo
+                    .rects
+                    .iter()
+                    .map(|r| r.top)
+                    .fold(f64::INFINITY, f64::min);
+                if min_top > cursor_y + CURSOR_HIT_PADDING {
+                    capture_debug!("[UIA] Word walk: past cursor vertically, stopping");
+                    break;
+                }
+            }
+
+            let moved = probe
+                .move_text(TextUnit::Word, 1)
+                .map_err(|e| anyhow!("Failed to advance to next word: {:?}", e))?;
+            if moved == 0 {
+                break;
+            }
+        }
+
+        capture_debug!("[UIA] Word walk did not find cursor word");
+        Ok(None)
+    }
+
     fn get_cursor_point(&self, request: &CaptureRequest) -> Result<Point> {
         if let Some(cursor) = request.cursor {
             return Ok(Point::new(cursor.x, cursor.y));
@@ -246,13 +357,25 @@ impl UiaCaptureStrategy {
         let mut visited = HashSet::new();
         let mut queue = VecDeque::new();
         queue.push_back(element.clone());
+        let mut nodes_checked = 0usize;
 
         while let Some(current) = queue.pop_front() {
             let runtime_id = current.get_runtime_id().ok()?;
             if visited.contains(&runtime_id) {
                 continue;
             }
+            nodes_checked += 1;
+            let node_name = current.get_name().unwrap_or_default();
+            let node_class = current.get_classname().unwrap_or_default();
+            capture_debug!(
+                "[UIA] BFS node {}: name='{}' class='{}'" ,
+                nodes_checked, node_name, node_class
+            );
             if let Ok(pattern) = current.get_pattern::<UITextPattern>() {
+                capture_info!(
+                    "[UIA] Found TextPattern on node {} (class='{}')",
+                    nodes_checked, node_class
+                );
                 return Some(pattern);
             }
             visited.insert(runtime_id);
@@ -268,6 +391,7 @@ impl UiaCaptureStrategy {
             }
         }
 
+        capture_info!("[UIA] No TextPattern found after checking {} nodes", nodes_checked);
         None
     }
 
@@ -276,7 +400,13 @@ impl UiaCaptureStrategy {
             .get_text(-1)
             .map_err(|e| anyhow!("Failed to get text: {:?}", e))?;
         capture_debug!("[UIA] range text raw='{}'", text);
-        let trimmed = text.trim();
+        // Strip U+FFFC (object replacement character) and other non-text chars
+        // that apps like Kindle web reader return instead of actual text.
+        let cleaned: String = text
+            .chars()
+            .filter(|&c| c != '\u{FFFC}' && c != '\u{FFFE}' && c != '\u{FFFF}')
+            .collect();
+        let trimmed = cleaned.trim();
         if trimmed.is_empty() {
             Ok(None)
         } else {
