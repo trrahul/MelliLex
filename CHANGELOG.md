@@ -2,6 +2,20 @@
 
 All notable changes to MelliLex will be documented here.
 
+## [0.9.0] — 2026-05-04
+
+### Capture & global lookup
+- Replaced the keyboard shortcut with **Ctrl + Right-click** as the only global lookup trigger
+- Expanded OCR capture detection to cover PDF readers and Kindle Cloud Reader
+- Word-walk fallback for Chromium-based windows; strip stray U+FFFC object-replacement characters from captured text
+- Removed the unreliable clipboard capture strategy
+
+### AI providers
+- Refreshed model lists: Claude Opus 4.7, Gemini 3.1 Pro Preview / Flash-Lite Preview, GPT-5.3 / GPT-5.4
+- GPT-5 mini is now the default OpenAI model (GPT-5 Nano removed)
+- Anthropic key validation now uses `GET /v1/models`
+- Provider error messages from the upstream API are surfaced to the UI instead of a generic `400 Bad Request`
+
 ## [0.8.0] — 2026-03-12
 
 ### Initial public release
