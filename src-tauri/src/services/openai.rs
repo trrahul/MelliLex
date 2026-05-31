@@ -255,6 +255,11 @@ mod tests {
 
         let response: OpenAIResponse = serde_json::from_str(openai_response).unwrap();
         assert_eq!(response.choices.len(), 1);
-        assert!(response.choices[0].message.content.contains("test"));
+        assert!(response.choices[0]
+            .message
+            .content
+            .as_deref()
+            .unwrap_or_default()
+            .contains("test"));
     }
 }

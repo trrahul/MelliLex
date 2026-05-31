@@ -366,6 +366,8 @@ fn needs_ocr_capture(process_path: &str) -> bool {
         || lower.ends_with("foxitpdfeditor.exe")
     // SumatraPDF
         || lower.ends_with("sumatrapdf.exe")
+    // Calibre e-book viewer (Qt / QtWebEngine — no UIA TextPattern)
+        || lower.ends_with("ebook-viewer.exe")
 }
 
 /// Gets the full path of a process by PID.
@@ -394,6 +396,34 @@ fn get_process_path(pid: u32) -> String {
         } else {
             "<unopened>".to_string()
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::needs_ocr_capture;
+
+    #[test]
+    fn detects_calibre_viewer() {
+        assert!(needs_ocr_capture(r"C:\Program Files\Calibre2\ebook-viewer.exe"));
+        // Case-insensitive
+        assert!(needs_ocr_capture(r"C:\PROGRAM FILES\CALIBRE2\EBOOK-VIEWER.EXE"));
+        // Main library GUI is intentionally not OCR-preferred
+        assert!(!needs_ocr_capture(r"C:\Program Files\Calibre2\calibre.exe"));
+    }
+
+    #[test]
+    fn still_detects_existing_ocr_apps() {
+        assert!(needs_ocr_capture(r"C:\Program Files\Amazon\Kindle\Kindle.exe"));
+        assert!(needs_ocr_capture(r"C:\Program Files\Adobe\Acrobat\Acrobat.exe"));
+        assert!(needs_ocr_capture(r"C:\Foxit\FoxitPDFReader.exe"));
+        assert!(needs_ocr_capture(r"C:\tools\SumatraPDF.exe"));
+    }
+
+    #[test]
+    fn ignores_unrelated_processes() {
+        assert!(!needs_ocr_capture(r"C:\Windows\notepad.exe"));
+        assert!(!needs_ocr_capture(r"C:\Program Files\Microsoft VS Code\Code.exe"));
     }
 }
 
