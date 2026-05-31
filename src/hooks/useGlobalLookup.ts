@@ -35,11 +35,11 @@ export function useGlobalLookup() {
               toast.error("No word detected. Select text before using the shortcut.");
               return;
             }
+            
+            navigate("/");
             await rootStore.searchCoordinator.search(candidate, {
               source: "global-lookup",
             });
-            // Navigate to Define page (Home) after starting search
-            navigate("/");
           },
         );
 
