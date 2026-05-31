@@ -2,6 +2,13 @@
 
 All notable changes to MelliLex will be documented here.
 
+## [0.10.0] — 2026-05-22
+
+
+- Updated OpenAI and Gemini models
+- Fix calibre text detection
+- Fix an issue where window is not visible during a lookup
+
 ## [0.9.0] — 2026-05-04
 
 ### Capture & global lookup
