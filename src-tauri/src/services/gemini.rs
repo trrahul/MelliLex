@@ -15,8 +15,10 @@ use crate::services::provider_http::{ensure_success, log_status_if_error};
 const KNOWN_GEMINI_MODELS: &[(&str, &str)] = &[
     ("gemini-2.5-flash-lite", "Gemini 2.5 Flash Lite"),
     ("gemini-2.5-flash", "Gemini 2.5 Flash"),
+    ("gemini-3.1-flash-lite", "Gemini 3.1 Flash Lite"),
     ("gemini-3.1-flash-lite-preview", "Gemini 3.1 Flash Lite (Preview)"),
-    ("gemini-3-flash", "Gemini 3 Flash"),
+    ("gemini-3.5-flash", "Gemini 3.5 Flash"),
+    ("gemini-3-flash-preview", "Gemini 3 Flash (Preview)"),
     ("gemini-2.5-pro", "Gemini 2.5 Pro"),
     ("gemini-3.1-pro-preview", "Gemini 3.1 Pro (Preview)"),
     ("gemini-2.0-flash", "Gemini 2.0 Flash (Deprecated)"),
@@ -354,8 +356,10 @@ mod tests {
 
     #[test]
     fn gemini_known_models_have_friendly_names() {
-        let (id, name) = KNOWN_GEMINI_MODELS[2];
-        assert_eq!(id, "gemini-2.5-pro");
-        assert_eq!(name, "Gemini 2.5 Pro");
+        // Look up by id rather than position so the test survives list reordering.
+        let entry = KNOWN_GEMINI_MODELS
+            .iter()
+            .find(|(id, _)| *id == "gemini-2.5-pro");
+        assert_eq!(entry, Some(&("gemini-2.5-pro", "Gemini 2.5 Pro")));
     }
 }

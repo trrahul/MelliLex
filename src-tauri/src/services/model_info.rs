@@ -12,6 +12,9 @@ const KNOWN_MODELS: &[(&str, &str)] = &[
     ("gpt-5.2-pro", "GPT-5.2 Pro"),
     ("gpt-5.3", "GPT-5.3"),
     ("gpt-5.4", "GPT-5.4"),
+    ("gpt-5.4-mini", "GPT-5.4 Mini"),
+    ("gpt-5.5", "GPT-5.5"),
+    ("gpt-5.5-pro", "GPT-5.5 Pro"),
 ];
 
 const SPECIALIZED_KEYWORDS: &[&str] = &[
@@ -70,19 +73,17 @@ mod tests {
     }
 
     #[test]
-    fn priority_respects_list_order() {
-        assert!(
-            ModelInfoService::get_model_priority("gpt-5.2")
-                < ModelInfoService::get_model_priority("gpt-5.1")
-        );
-        assert!(
-            ModelInfoService::get_model_priority("gpt-5.1")
-                < ModelInfoService::get_model_priority("gpt-5-mini")
-        );
-        assert!(
-            ModelInfoService::get_model_priority("gpt-5-mini")
-                < ModelInfoService::get_model_priority("gpt-5")
-        );
+    fn priority_matches_list_order() {
+        for (idx, (id, _)) in KNOWN_MODELS.iter().enumerate() {
+            assert_eq!(
+                ModelInfoService::get_model_priority(id),
+                idx as u32,
+                "priority for {} should equal its list index",
+                id
+            );
+        }
+
+        assert_eq!(ModelInfoService::get_model_priority("gpt-5-mini"), 0);
     }
 
     #[test]
