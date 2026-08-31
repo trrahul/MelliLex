@@ -71,7 +71,8 @@ impl RetriableClient {
         let mut strategy = self.config.build_strategy();
         let max_attempts = match intent {
             RetryIntent::Idempotent => self.config.max_attempts,
-            RetryIntent::NonIdempotent => self.config.max_attempts,
+            // Chat completions must not retry: lookups already fan out 3 requests.
+            RetryIntent::NonIdempotent => 1,
         };
 
         loop {

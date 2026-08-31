@@ -1,5 +1,7 @@
 use crate::errors::AppError;
-use crate::models::{PhraseDefinitionData, PhraseSection2Context, PhraseSection3Related};
+use crate::models::{
+    PhraseDefinitionData, PhraseSection1Overview, PhraseSection2Context, PhraseSection3Related,
+};
 use crate::services::orchestration::PhraseProgressiveEmitter;
 use crate::services::phrase_service::PhraseService;
 use log::info;
@@ -8,67 +10,47 @@ use tokio::task::JoinSet;
 
 /// Result type for parallel phrase section generation tasks.
 pub enum PhraseSectionTaskResult {
+    Section1(PhraseSection1Overview),
     Section2(PhraseSection2Context),
     Section3(PhraseSection3Related),
 }
 
-/// Handles parallel generation of progressive phrase sections.
-/// Section 1 is generated and emitted first, then sections 2 and 3 run in parallel.
+/// Handles parallel generation of all three progressive phrase sections.
 pub struct PhraseSectionGenerator;
 
 impl PhraseSectionGenerator {
-    /// Generates section 1 immediately and emits it, then spawns parallel tasks for sections 2 and 3.
-    /// Returns the combined PhraseDefinitionData on success.
+    /// Spawns section 1/2/3 together and emits each as it completes.
     pub async fn generate_progressive<E: PhraseProgressiveEmitter + ?Sized>(
         phrase_service: Arc<PhraseService>,
         phrase: &str,
         language: &str,
         emitter: &E,
     ) -> Result<PhraseDefinitionData, AppError> {
-        let phrase_owned = phrase.to_string();
-        let language_owned = language.to_string();
-
-        // Generate section 1 first so the UI can render the overview immediately.
-        let (section1, _) = phrase_service
-            .generate_section1_overview(&phrase_owned, &language_owned)
-            .await
-            .map_err(|e| {
-                log::error!("Phrase Section 1 error for '{}': {}", phrase_owned, e);
-                AppError::from(e)
-            })?;
-
-        info!("Emitting phrase section 1 (overview) for: {}", phrase_owned);
-        emitter.emit_section1(&section1)?;
-
-        // Generate sections 2 and 3 in parallel
-        let (section2, section3) = Self::generate_parallel_sections(
-            phrase_service,
-            &phrase_owned,
-            &language_owned,
-            emitter,
-        )
-        .await?;
-
-        Ok(PhraseDefinitionData {
-            section1,
-            section2,
-            section3,
-        })
-    }
-
-    /// Spawns parallel tasks for sections 2 and 3, emitting each as they complete.
-    async fn generate_parallel_sections<E: PhraseProgressiveEmitter + ?Sized>(
-        phrase_service: Arc<PhraseService>,
-        phrase: &str,
-        language: &str,
-        emitter: &E,
-    ) -> Result<(PhraseSection2Context, PhraseSection3Related), AppError> {
+        let mut section1_data: Option<PhraseSection1Overview> = None;
         let mut section2_data: Option<PhraseSection2Context> = None;
         let mut section3_data: Option<PhraseSection3Related> = None;
 
         let mut join_set: JoinSet<Result<PhraseSectionTaskResult, AppError>> = JoinSet::new();
 
-        // Spawn section 2 task (context/origin)
+        join_set.spawn({
+            let svc = phrase_service.clone();
+            let section_phrase = phrase.to_string();
+            let section_language = language.to_string();
+            async move {
+                log::debug!(
+                    "Generating phrase section 1 (overview) [parallel] in {}",
+                    section_language
+                );
+                svc.generate_section1_overview(&section_phrase, &section_language)
+                    .await
+                    .map(|(section, _)| PhraseSectionTaskResult::Section1(section))
+                    .map_err(|e| {
+                        log::error!("Phrase Section 1 error for '{}': {}", section_phrase, e);
+                        AppError::from(e)
+                    })
+            }
+        });
+
         join_set.spawn({
             let svc = phrase_service.clone();
             let section_phrase = phrase.to_string();
@@ -88,7 +70,6 @@ impl PhraseSectionGenerator {
             }
         });
 
-        // Spawn section 3 task (related phrases)
         join_set.spawn({
             let svc = phrase_service.clone();
             let section_phrase = phrase.to_string();
@@ -108,9 +89,13 @@ impl PhraseSectionGenerator {
             }
         });
 
-        // Collect results and emit as they complete
         while let Some(result) = join_set.join_next().await {
             match result {
+                Ok(Ok(PhraseSectionTaskResult::Section1(section))) => {
+                    info!("Emitting phrase section 1 (overview)");
+                    emitter.emit_section1(&section)?;
+                    section1_data = Some(section);
+                }
                 Ok(Ok(PhraseSectionTaskResult::Section2(section))) => {
                     info!("Emitting phrase section 2 (context)");
                     emitter.emit_section2(&section)?;
@@ -132,7 +117,9 @@ impl PhraseSectionGenerator {
             }
         }
 
-        // Ensure we got both sections
+        let section1 = section1_data.ok_or_else(|| {
+            AppError::from(anyhow::anyhow!("Phrase section 1 was not generated"))
+        })?;
         let section2 = section2_data.ok_or_else(|| {
             AppError::from(anyhow::anyhow!("Phrase section 2 was not generated"))
         })?;
@@ -140,6 +127,10 @@ impl PhraseSectionGenerator {
             AppError::from(anyhow::anyhow!("Phrase section 3 was not generated"))
         })?;
 
-        Ok((section2, section3))
+        Ok(PhraseDefinitionData {
+            section1,
+            section2,
+            section3,
+        })
     }
 }

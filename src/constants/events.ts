@@ -24,7 +24,7 @@ export const EVENTS = {
  * Timeout configurations for various operations.
  */
 export const TIMEOUTS = {
-  WORD_SEARCH: 30000, // 30 seconds
+  WORD_SEARCH: 90000, // 90 seconds — safety net after disabling thinking
   EXPLORATION: 120000, // 120 seconds — reasoning models need more time
 } as const;
 

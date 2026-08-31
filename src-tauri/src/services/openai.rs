@@ -114,7 +114,9 @@ impl PromptSender for OpenAIService {
             "messages": [
                 { "role": "user", "content": prompt }
             ],
-            "max_completion_tokens": 16000,
+            "max_tokens": 1200,
+            "max_completion_tokens": 1200,
+            "thinking": { "type": "disabled" },
             "response_format": { "type": "json_object" }
         });
 
@@ -159,12 +161,18 @@ impl PromptSender for OpenAIService {
                 log::debug!("OpenAI content length: {} chars", content.len());
 
                 if content.is_empty() {
+                    let reasoning = choice
+                        .message
+                        .reasoning_content
+                        .as_deref()
+                        .unwrap_or_default();
                     log::error!(
-                        "OpenAI returned empty content. Raw response: {}",
+                        "OpenAI returned empty content (reasoning_content {} chars). Raw response: {}",
+                        reasoning.len(),
                         &text.chars().take(1000).collect::<String>()
                     );
                     return Err(anyhow::anyhow!(
-                        "OpenAI returned empty content for model {}",
+                        "OpenAI returned empty content for model {} (thinking produced no JSON)",
                         self.model
                     ));
                 }
@@ -215,6 +223,8 @@ struct OpenAIChoice {
 struct OpenAIMessage {
     #[serde(default)]
     content: Option<String>,
+    #[serde(default)]
+    reasoning_content: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
