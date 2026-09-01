@@ -23,6 +23,7 @@ impl SectionGenerator {
         dictionary_service: Arc<DictionaryService>,
         word: &str,
         language: &str,
+        technical_query: bool,
         emitter: &E,
     ) -> Result<WordProgressiveData, AppError> {
         let mut section1_data: Option<WordSection1Header> = None;
@@ -56,10 +57,11 @@ impl SectionGenerator {
             let section_language = language.to_string();
             async move {
                 log::debug!(
-                    "Generating section 2 (meanings) [parallel] in {}",
-                    section_language
+                    "Generating section 2 (meanings) [parallel] in {} technical={}",
+                    section_language,
+                    technical_query
                 );
-                svc.generate_section2_meanings(&section_word, &section_language)
+                svc.generate_section2_meanings(&section_word, &section_language, technical_query)
                     .await
                     .map(|(section, _)| SectionTaskResult::Section2(section))
                     .map_err(|e| {

@@ -158,6 +158,7 @@ mod tests {
             ui_language: None,
             enable_global_lookup: true,
             typography_mode: "classic".into(),
+            technical_query: false,
         }
     }
 
@@ -177,6 +178,7 @@ mod tests {
             ui_language: None,
             enable_global_lookup: true,
             typography_mode: "classic".into(),
+            technical_query: false,
         }
     }
 

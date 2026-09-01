@@ -21,7 +21,9 @@
   "search": {
     "placeholder": "Wort oder Ausdruck eingeben...",
     "clear": "Suche löschen",
-    "submit": "Suche absenden"
+    "submit": "Suche absenden",
+    "technical": "Tech",
+    "technicalHint": "CS-/Regelungs-/Robotik-Bedeutung zuerst in den Bedeutungen"
   },
   "navigation": {
     "home": "Definieren",

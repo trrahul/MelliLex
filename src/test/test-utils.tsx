@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render, type RenderOptions } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { RootStore, RootStoreContext } from '../stores/RootStore';
@@ -63,8 +64,10 @@ export function createMockRootStore(overrides: Record<string, unknown> = {}): Ro
       aiProvider: 'openai',
       theme: 'light',
       enableGlobalLookup: false,
+      technicalQuery: false,
       exportSettings: {},
     },
+    updateSettings: vi.fn().mockResolvedValue(undefined),
     ...overrides.settingsStore as object,
   };
   

@@ -21,7 +21,9 @@
   "search": {
     "placeholder": "输入单词或短语...",
     "clear": "清除",
-    "submit": "搜索"
+    "submit": "搜索",
+    "technical": "技术",
+    "technicalHint": "释义优先给出计算机 / 控制 / 机器人专业义项"
   },
   "navigation": {
     "home": "定义",

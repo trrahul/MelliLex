@@ -44,6 +44,7 @@ impl SettingsRepository {
                 ui_language: None, // Will be auto-detected on frontend first run
                 enable_global_lookup: true,
                 typography_mode: "classic".to_string(),
+                technical_query: false,
             }),
             Err(e) => Err(AppError::from(e)),
         }

@@ -21,7 +21,9 @@
   "search": {
     "placeholder": "Entrez un mot ou une expression...",
     "clear": "Effacer",
-    "submit": "Lancer la recherche"
+    "submit": "Lancer la recherche",
+    "technical": "Tech",
+    "technicalHint": "Place un sens CS / contrôle / robotique en tête des définitions"
   },
   "navigation": {
     "home": "Définir",

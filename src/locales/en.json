@@ -21,7 +21,9 @@
   "search": {
     "placeholder": "Enter word or phrase...",
     "clear": "Clear search",
-    "submit": "Submit search"
+    "submit": "Submit search",
+    "technical": "Tech",
+    "technicalHint": "Pin a CS / control / robotics sense first in Meanings"
   },
   "navigation": {
     "home": "Define",

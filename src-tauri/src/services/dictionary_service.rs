@@ -55,16 +55,18 @@ impl DictionaryService {
         &self,
         word: &str,
         language: &str,
+        technical_query: bool,
     ) -> Result<(WordSection2Meanings, Option<TokenUsage>)> {
         log::debug!(
-            "Generating section 2 (meanings) for: {} in {}",
+            "Generating section 2 (meanings) for: {} in {} (technical={})",
             word,
-            language
+            language,
+            technical_query
         );
 
         let prompt = self
             .prompt_manager
-            .render_with_language("section2_meanings", word, language)
+            .render_section2_meanings(word, language, technical_query)
             .ok_or_else(|| anyhow::anyhow!("Template 'section2_meanings' not found"))?;
         let (response, token_usage) = self.ai_provider.send_prompt(&prompt).await?;
 

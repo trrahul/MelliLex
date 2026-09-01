@@ -81,6 +81,7 @@ export interface AppSettings {
   uiLanguage?: string; // Language for UI interface (default: auto-detected)
   enableGlobalLookup: boolean; // Enable global lookup feature
   typographyMode?: TypographyOption; // Preferred typography pairing
+  technicalQuery?: boolean; // Prefer CS/control/robotics sense first in meanings
 }
 
 // Must match Rust SUPPORTED_LANGUAGES in models.rs

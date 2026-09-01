@@ -201,10 +201,15 @@ impl CommandOrchestrator {
 
         let language = Self::resolve_language(&settings);
         info!("Using explanation language: {}", language);
+        let technical_query = settings.technical_query;
+        if technical_query {
+            info!("Technical query enabled: CS/control/robotics sense first");
+        }
 
         let provider_priorities = Self::build_provider_priority_list(&settings);
-        if self
-            .try_emit_cached_progressive(
+        // Technical lookups must not reuse a general cached definition.
+        if !technical_query
+            && self.try_emit_cached_progressive(
                 db,
                 &validated_word,
                 emitter,
@@ -226,11 +231,14 @@ impl CommandOrchestrator {
             dictionary_service,
             &validated_word,
             &language,
+            technical_query,
             emitter,
         )
         .await?;
 
-        db.cache_word_progressive(word, &combined, &provider_name)?;
+        if !technical_query {
+            db.cache_word_progressive(word, &combined, &provider_name)?;
+        }
         db.add_to_history(word, &provider_name)?;
 
         info!("Completed progressive word search for: {}", word);

@@ -21,7 +21,9 @@
   "search": {
     "placeholder": "単語またはフレーズを入力...",
     "clear": "クリア",
-    "submit": "検索する"
+    "submit": "検索する",
+    "technical": "技術",
+    "technicalHint": "意味の先頭に CS / 制御 / ロボットの専門義を置く"
   },
   "navigation": {
     "home": "定義",

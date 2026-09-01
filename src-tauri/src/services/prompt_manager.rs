@@ -2,6 +2,18 @@ use std::collections::HashMap;
 
 use crate::models::SUPPORTED_LANGUAGES;
 
+/// Extra instruction appended to the meanings prompt when technical query is on.
+pub const TECHNICAL_MEANING_INSTRUCTION: &str = "\
+TECHNICAL SENSE (required, first item):\n\
+Also give a specialist definition aimed at computer science, control engineering, and robotics \
+(software, algorithms, signals, kinematics, actuators, ROS, etc.).\n\
+- Put that technical sense FIRST in the \"meanings\" array as number 1.\n\
+- Then list up to 3 general-language senses in frequency order (up to 4 meanings total).\n\
+- The technical definition must name the field, be one precise sentence, and use domain examples.\n\
+- If the word is not a standard term in those fields, meaning 1 should say so briefly and give the \
+closest technical usage, then continue with general senses.\n\
+- Keep the same JSON schema; do not drop memoryTip or examples.";
+
 #[derive(Clone)]
 pub struct PromptManager {
     templates: HashMap<String, String>,
@@ -92,6 +104,20 @@ impl PromptManager {
             );
         }
 
+        Some(prompt)
+    }
+
+    /// Meanings prompt, with an optional CS/control/robotics sense pinned first.
+    pub fn render_section2_meanings(
+        &self,
+        word: &str,
+        language: &str,
+        technical_query: bool,
+    ) -> Option<String> {
+        let mut prompt = self.render_with_language("section2_meanings", word, language)?;
+        if technical_query {
+            prompt = format!("{}\n\n{}", prompt, TECHNICAL_MEANING_INSTRUCTION);
+        }
         Some(prompt)
     }
 
@@ -237,5 +263,22 @@ mod tests {
             .render_with_language("phrase_section1_overview", "test phrase", "English")
             .expect("phrase_section1_overview template not found")
             .contains("test phrase"));
+    }
+
+    #[test]
+    fn section2_technical_query_pins_specialist_sense() {
+        let manager = PromptManager::new();
+        let normal = manager
+            .render_section2_meanings("gain", "English", false)
+            .expect("section2");
+        let technical = manager
+            .render_section2_meanings("gain", "English", true)
+            .expect("section2 technical");
+
+        assert!(normal.contains("gain"));
+        assert!(!normal.contains("TECHNICAL SENSE"));
+        assert!(technical.contains("TECHNICAL SENSE"));
+        assert!(technical.contains("robotics"));
+        assert!(technical.starts_with(&normal));
     }
 }

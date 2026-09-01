@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'react-i18next';
-import { Search, X } from 'lucide-react';
+import { Search, X, Cpu } from 'lucide-react';
 import { useStores } from '../../stores/RootStore';
 import { SpellCheckDialog } from '../SpellCheckDialog';
 import type { SpellCheckResponse } from '../../types';
@@ -12,7 +12,7 @@ export const SearchBar = observer(() => {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
-  const { searchCoordinator, progressiveWordStore, historyStore } = useStores();
+  const { searchCoordinator, progressiveWordStore, historyStore, settingsStore } = useStores();
   const [searchQuery, setSearchQuery] = useState('');
   const [spellCheckData, setSpellCheckData] = useState<SpellCheckResponse | null>(null);
   const [showSpellCheckDialog, setShowSpellCheckDialog] = useState(false);
@@ -121,44 +121,69 @@ export const SearchBar = observer(() => {
   };
 
   const canClearSearch = !isSettingsPage && searchQuery.length > 0;
+  const technicalQuery = settingsStore.settings.technicalQuery ?? false;
+
+  const handleToggleTechnical = async () => {
+    await settingsStore.updateSettings({ technicalQuery: !technicalQuery });
+  };
 
   return (
     <>
-      <form 
-        onSubmit={handleSubmit} 
-        className={`relative flex-1 transition-all duration-300 ${
-          isSettingsPage 
-            ? 'max-w-0 opacity-0 -translate-x-4 pointer-events-none' 
+      <div
+        className={`relative flex items-center gap-2 flex-1 transition-all duration-300 ${
+          isSettingsPage
+            ? 'max-w-0 opacity-0 -translate-x-4 pointer-events-none'
             : 'max-w-lg opacity-100 translate-x-0'
         }`}
       >
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => handleInputChange(e.target.value)}
-          placeholder={getPlaceholder()}
-          className="w-full px-4 py-2 pr-16 border-2 border-input bg-background rounded-lg text-sm outline-none focus:border-ring transition-colors"
-          disabled={isSettingsPage}
-        />
-        {canClearSearch && (
-          <button
-            type="button"
-            onClick={handleClear}
-            className="absolute right-10 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-            aria-label={t('search.clear')}
-          >
-            <X className="w-4 h-4" />
-          </button>
-        )}
-        <button
-          type="submit"
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-          disabled={isSettingsPage || searchStrategy.isBusy()}
-          aria-label={t('search.submit')}
+        <form
+          onSubmit={handleSubmit}
+          className="relative flex-1"
         >
-          <Search className="w-4 h-4" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => handleInputChange(e.target.value)}
+            placeholder={getPlaceholder()}
+            className="w-full px-4 py-2 pr-16 border-2 border-input bg-background rounded-lg text-sm outline-none focus:border-ring transition-colors"
+            disabled={isSettingsPage}
+          />
+          {canClearSearch && (
+            <button
+              type="button"
+              onClick={handleClear}
+              className="absolute right-10 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label={t('search.clear')}
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+          <button
+            type="submit"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+            disabled={isSettingsPage || searchStrategy.isBusy()}
+            aria-label={t('search.submit')}
+          >
+            <Search className="w-4 h-4" />
+          </button>
+        </form>
+        <button
+          type="button"
+          onClick={handleToggleTechnical}
+          disabled={isSettingsPage}
+          aria-pressed={technicalQuery}
+          aria-label={t('search.technicalHint')}
+          title={t('search.technicalHint')}
+          className={`shrink-0 inline-flex items-center gap-1 px-2 py-1.5 rounded-lg border text-xs font-medium transition-colors ${
+            technicalQuery
+              ? 'border-primary bg-primary text-primary-foreground'
+              : 'border-input bg-background text-muted-foreground hover:text-foreground hover:border-ring'
+          }`}
+        >
+          <Cpu className="w-3.5 h-3.5" />
+          {t('search.technical')}
         </button>
-      </form>
+      </div>
 
       <SpellCheckDialog
         open={searchStrategy.requiresSpellCheck && showSpellCheckDialog}

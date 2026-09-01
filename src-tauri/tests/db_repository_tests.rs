@@ -209,6 +209,7 @@ fn test_settings_persistence() {
         ui_language: None,
         enable_global_lookup: false,
         typography_mode: "modern".to_string(),
+        technical_query: false,
     };
 
     // Save settings

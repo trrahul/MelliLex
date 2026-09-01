@@ -292,6 +292,9 @@ pub struct AppSettings {
     pub enable_global_lookup: bool,
     #[serde(default = "default_typography_mode")]
     pub typography_mode: String,
+    /// When true, the meanings prompt asks for a CS/control/robotics sense first.
+    #[serde(default)]
+    pub technical_query: bool,
 }
 
 fn default_enable_global_lookup() -> bool {

@@ -28,6 +28,7 @@ export class SettingsStore {
     exportSettings: createDefaultExportSettings(),
     enableGlobalLookup: true,
     typographyMode: DEFAULT_TYPOGRAPHY_OPTION,
+    technicalQuery: false,
   };
   loading: boolean = false;
   error: string | null = null;

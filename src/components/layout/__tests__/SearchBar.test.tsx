@@ -151,4 +151,26 @@ describe('SearchBar', () => {
     renderSearchBar('/settings');
     expect(screen.getByRole('textbox')).toBeDisabled();
   });
+
+  it('toggles technical query in settings', async () => {
+    const updateSettings = vi.fn().mockResolvedValue(undefined);
+    renderSearchBar('/', {
+      settingsStore: {
+        settings: {
+          aiProvider: 'openai',
+          theme: 'light',
+          enableGlobalLookup: false,
+          technicalQuery: false,
+          exportSettings: {},
+        },
+        updateSettings,
+      },
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: /CS \/ control \/ robotics/i }));
+
+    await waitFor(() => {
+      expect(updateSettings).toHaveBeenCalledWith({ technicalQuery: true });
+    });
+  });
 });

@@ -21,7 +21,9 @@
   "search": {
     "placeholder": "Digite palavra ou frase...",
     "clear": "Limpar",
-    "submit": "Enviar pesquisa"
+    "submit": "Enviar pesquisa",
+    "technical": "Téc",
+    "technicalHint": "Coloca um sentido de CS / controle / robótica primeiro nas definições"
   },
   "navigation": {
     "home": "Definir",

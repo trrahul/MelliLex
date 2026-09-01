@@ -21,7 +21,9 @@
   "search": {
     "placeholder": "Kelime veya deyim girin...",
     "clear": "Temizle",
-    "submit": "Aramayı gönder"
+    "submit": "Aramayı gönder",
+    "technical": "Teknik",
+    "technicalHint": "Anlamlarda önce CS / kontrol / robotik anlamını ver"
   },
   "navigation": {
     "home": "Tanımla",

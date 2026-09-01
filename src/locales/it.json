@@ -21,7 +21,9 @@
   "search": {
     "placeholder": "Inserisci parola o frase...",
     "clear": "Cancella",
-    "submit": "Invia ricerca"
+    "submit": "Invia ricerca",
+    "technical": "Tech",
+    "technicalHint": "Metti per primo un senso CS / controllo / robotica nei significati"
   },
   "navigation": {
     "home": "Definisci",
